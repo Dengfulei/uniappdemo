@@ -5,13 +5,13 @@
         "name": "default",
         "type": "HarmonyOS",
         "material": {
-          "certpath": "/Users/dengfulei/.ohos/config/default_HarmonyUniAppXVerify_o4q1yyMUETbS32rvpcFjl3uB67zik1oTOcfOR1o8prw=.cer",
+          "certpath": "/Users/dengfulei/.ohos/config/default_native-harmony-project_EoazbbKuCSY44iM3c9hBY_56UEC_ztKEHdCraGEH9Pk=.cer",
           "keyAlias": "debugKey",
-          "keyPassword": "0000001B427CAD0C6683031D4FD9F2B0938487972CE2DE88D01833C0A8B98CE9348A45815B6B37C97F9EFE",
-          "profile": "/Users/dengfulei/.ohos/config/default_HarmonyUniAppXVerify_o4q1yyMUETbS32rvpcFjl3uB67zik1oTOcfOR1o8prw=.p7b",
+          "keyPassword": "0000001B67359465E2F6109DB3B9BBAFBAA53FAD4985EAA0E9652E2C47F7069734641C8853A44E8E83E093",
+          "profile": "/Users/dengfulei/.ohos/config/default_native-harmony-project_EoazbbKuCSY44iM3c9hBY_56UEC_ztKEHdCraGEH9Pk=.p7b",
           "signAlg": "SHA256withECDSA",
-          "storeFile": "/Users/dengfulei/.ohos/config/default_HarmonyUniAppXVerify_o4q1yyMUETbS32rvpcFjl3uB67zik1oTOcfOR1o8prw=.p12",
-          "storePassword": "0000001BE56149D883791779067C6F1A0975C342357DF2ADF32DA0A50893682809ABFEB4A441ED0B08A5CF"
+          "storeFile": "/Users/dengfulei/.ohos/config/default_native-harmony-project_EoazbbKuCSY44iM3c9hBY_56UEC_ztKEHdCraGEH9Pk=.p12",
+          "storePassword": "0000001B17ACB49D4F1A32484E3C63BCCC8E2D7117BCD1611FB546D2B023E2FF61926190830CE5070EF0DF"
         }
       }
     ],

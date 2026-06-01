@@ -275,7 +275,7 @@ export default {
 }
 
 .hero {
-  min-height: 168px;
+  /* min-height: 168px; */
   padding: 20px;
   border-radius: 8px;
   background-color: #20302d;
@@ -285,7 +285,8 @@ export default {
 }
 
 .hero-copy {
-  width: 226px;
+  /* width: 226px; */
+  flex: 1;
 }
 
 .hero-kicker {
@@ -443,7 +444,9 @@ export default {
   font-size: 16px;
   font-weight: 700;
   flex-shrink: 1;
-}
+  lines: 1;
+  text-overflow: ellipsis;
+  }
 
 .product-price {
   color: #c46141;
