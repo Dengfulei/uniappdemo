@@ -1,0 +1,6 @@
+framework module DCloudPermissionLocation {
+  umbrella header "DCloudPermissionLocation.h"
+  export *
+
+  module * { export * }
+}

@@ -1,0 +1,58 @@
+import { Notification, NotificationCenter } from 'Foundation'
+import { NativeBridgeMessage, NativeBridgeMessageCallback, NativeBridgeOptions, OffNativeBridgeMessage, OnNativeBridgeMessage, OpenNativeBridge } from '../interface.uts'
+
+const nativeBridgeEventName = 'UniAppXNativeBridge'
+const uniAppXMessageEventName = 'UniAppXNativeMessage'
+
+export const openNativeBridge : OpenNativeBridge = function (options : NativeBridgeOptions) {
+  if (options.methodName == '') {
+    console.log(`native-bridge ignored empty methodName`)
+    return
+  }
+
+  const notificationName = new Notification.Name(nativeBridgeEventName)
+  const userInfo = new Map<string, any>()
+  userInfo.set('methodName', options.methodName!)
+  userInfo.set('data', options.data!)
+
+  NotificationCenter.default.post(name = notificationName, object = null, userInfo = userInfo)
+}
+
+class NativeBridgeMessageManager extends NSObject {
+  static listener : NativeBridgeMessageCallback | null = null
+
+  static addListener(callback : NativeBridgeMessageCallback) {
+    this.listener = callback
+    const notificationName = new Notification.Name(uniAppXMessageEventName)
+    const method = Selector('handleReceiveMessage:')
+    NotificationCenter.default.removeObserver(this, name = notificationName, object = null)
+    NotificationCenter.default.addObserver(this, selector = method, name = notificationName, object = null)
+  }
+
+  static removeListener() {
+    const notificationName = new Notification.Name(uniAppXMessageEventName)
+    NotificationCenter.default.removeObserver(this, name = notificationName, object = null)
+    this.listener = null
+  }
+
+  @objc static handleReceiveMessage(notification : Notification) {
+    const userInfo = notification.userInfo
+    if (userInfo == null) {
+      return
+    }
+
+    const message = {
+      methodName: `${userInfo!['methodName'] ?? ''}`,
+      data: `${userInfo!['data'] ?? ''}`
+    } as NativeBridgeMessage
+    this.listener?.(message)
+  }
+}
+
+export const onNativeBridgeMessage : OnNativeBridgeMessage = function (callback : NativeBridgeMessageCallback) {
+  NativeBridgeMessageManager.addListener(callback)
+}
+
+export const offNativeBridgeMessage : OffNativeBridgeMessage = function () {
+  NativeBridgeMessageManager.removeListener()
+}

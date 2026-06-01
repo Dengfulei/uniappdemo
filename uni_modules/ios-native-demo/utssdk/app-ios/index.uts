@@ -1,0 +1,80 @@
+import { Date, NSObject } from 'Foundation'
+import { UIImagePickerController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIDevice, UIPasteboard } from 'UIKit'
+import { CopyIosNativeDemoText, GetIosNativeDemoInfo, IosNativeAlbumCallback, IosNativeAlbumResult, IosNativeDemoInfo, OpenIosNativeAlbum } from '../interface.uts'
+
+export const getIosNativeDemoInfo : GetIosNativeDemoInfo = function () : IosNativeDemoInfo {
+  const device = UIDevice.current
+
+  return {
+    platform: 'iOS',
+    deviceName: device.name,
+    systemName: device.systemName,
+    systemVersion: device.systemVersion,
+    model: device.model,
+    timestamp: `${Date.now()}`
+  } as IosNativeDemoInfo
+}
+
+export const copyIosNativeDemoText : CopyIosNativeDemoText = function (text : string) : boolean {
+  UIPasteboard.general.string = text
+  return UIPasteboard.general.string == text
+}
+
+class IosNativeAlbumPickerManager extends NSObject implements UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+  static shared : IosNativeAlbumPickerManager | null = null
+  callback : IosNativeAlbumCallback | null = null
+
+  open(callback : IosNativeAlbumCallback) : boolean {
+    if (!UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary)) {
+      callback({
+        action: 'unavailable',
+        message: '当前设备不可用系统相册',
+        mediaType: ''
+      } as IosNativeAlbumResult)
+      return false
+    }
+
+    this.callback = callback
+    const pickerController = new UIImagePickerController()
+    pickerController.delegate = this
+    pickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
+    pickerController.mediaTypes = ['public.image']
+
+    UTSiOS.getCurrentViewController().present(pickerController, animated = true, completion = null)
+    callback({
+      action: 'opened',
+      message: '已打开 iOS 系统相册',
+      mediaType: 'public.image'
+    } as IosNativeAlbumResult)
+    return true
+  }
+
+  dismiss(picker : UIImagePickerController) {
+    picker.dismiss(animated = true, completion = null)
+    picker.delegate = null
+  }
+
+  imagePickerController(param1 : UIImagePickerController, @argumentLabel("didFinishPickingMediaWithInfo") info : Map<UIImagePickerController.InfoKey, any>) {
+    const mediaType = `${info.get(UIImagePickerController.InfoKey.mediaType) ?? 'public.image'}`
+    this.dismiss(param1)
+    this.callback?.({
+      action: 'selected',
+      message: '已从 iOS 系统相册选择资源',
+      mediaType: mediaType
+    } as IosNativeAlbumResult)
+  }
+
+  imagePickerControllerDidCancel(param1 : UIImagePickerController) {
+    this.dismiss(param1)
+    this.callback?.({
+      action: 'cancel',
+      message: '已取消选择',
+      mediaType: ''
+    } as IosNativeAlbumResult)
+  }
+}
+
+export const openIosNativeAlbum : OpenIosNativeAlbum = function (callback : IosNativeAlbumCallback) : boolean {
+  IosNativeAlbumPickerManager.shared = new IosNativeAlbumPickerManager()
+  return IosNativeAlbumPickerManager.shared!.open(callback)
+}

@@ -1,0 +1,98 @@
+import BroadcastReceiver from 'android.content.BroadcastReceiver'
+import Build from 'android.os.Build'
+import Context from 'android.content.Context'
+import Intent from 'android.content.Intent'
+import IntentFilter from 'android.content.IntentFilter'
+import { NativeBridgeMessage, NativeBridgeMessageCallback, NativeBridgeOptions, OffNativeBridgeMessage, OnNativeBridgeMessage, OpenNativeBridge } from '../interface.uts'
+
+const nativeBridgeAndroidAction = 'com.dcloud.uniappdemo.NATIVE_BRIDGE'
+const uniAppXMessageAndroidAction = 'com.dcloud.uniappdemo.UNI_APP_X_MESSAGE'
+const nativeBridgeExtraMethodName = 'methodName'
+const nativeBridgeExtraData = 'data'
+const nativeBridgeMethodProductDetail = 'productDetail'
+const nativeProductDetailActivity = 'com.dcloud.uniappdemo.ProductDetailActivity'
+
+let nativeBridgeMessageCallback : NativeBridgeMessageCallback | null = null
+let nativeBridgeMessageReceiver : BroadcastReceiver | null = null
+
+class NativeBridgeMessageReceiver extends BroadcastReceiver {
+  constructor() {}
+
+  override onReceive(context : Context, intent : Intent) {
+    const action = intent.getAction()
+    if (action == null || !action.equals(uniAppXMessageAndroidAction)) {
+      return
+    }
+
+    const methodName = intent.getStringExtra(nativeBridgeExtraMethodName) ?? ''
+    const data = intent.getStringExtra(nativeBridgeExtraData) ?? ''
+    const message = {
+      methodName,
+      data
+    } as NativeBridgeMessage
+    nativeBridgeMessageCallback?.(message)
+  }
+}
+
+function openNativeActivity(options : NativeBridgeOptions) : boolean {
+  const activity = UTSAndroid.getUniActivity()
+  if (activity == null) {
+    return false
+  }
+
+  try {
+    const intent = new Intent(nativeBridgeAndroidAction)
+    intent.setPackage(activity.getPackageName())
+    intent.setClassName(activity, nativeProductDetailActivity)
+    intent.putExtra(nativeBridgeExtraMethodName, options.methodName)
+    intent.putExtra(nativeBridgeExtraData, options.data)
+    activity.startActivity(intent)
+    return true
+  } catch (error) {
+    console.log(`native-bridge android open failed: ${error}`)
+    return false
+  }
+}
+
+export const openNativeBridge : OpenNativeBridge = function (options : NativeBridgeOptions) {
+  if (options.methodName == nativeBridgeMethodProductDetail) {
+    if (!openNativeActivity(options)) {
+      console.log(`native-bridge android productDetail fallback data: ${options.data}`)
+    }
+    return
+  }
+
+  console.log(`native-bridge android ignored methodName: ${options.methodName}`)
+}
+
+export const onNativeBridgeMessage : OnNativeBridgeMessage = function (callback : NativeBridgeMessageCallback) {
+  const activity = UTSAndroid.getUniActivity()
+  if (activity == null) {
+    console.log('native-bridge android register receiver failed: activity is null')
+    return
+  }
+
+  offNativeBridgeMessage()
+  nativeBridgeMessageCallback = callback
+  nativeBridgeMessageReceiver = new NativeBridgeMessageReceiver()
+  const filter = new IntentFilter(uniAppXMessageAndroidAction)
+  if (Build.VERSION.SDK_INT >= 33) {
+    activity.registerReceiver(nativeBridgeMessageReceiver, filter, Context.RECEIVER_EXPORTED)
+  } else {
+    activity.registerReceiver(nativeBridgeMessageReceiver, filter)
+  }
+}
+
+export const offNativeBridgeMessage : OffNativeBridgeMessage = function () {
+  const activity = UTSAndroid.getUniActivity()
+  if (activity != null && nativeBridgeMessageReceiver != null) {
+    try {
+      activity.unregisterReceiver(nativeBridgeMessageReceiver!)
+    } catch (error) {
+      console.log(`native-bridge android unregister receiver failed: ${error}`)
+    }
+  }
+
+  nativeBridgeMessageCallback = null
+  nativeBridgeMessageReceiver = null
+}

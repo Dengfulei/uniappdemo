@@ -1,0 +1,11 @@
+framework module DCloudPermissionPush {
+  umbrella header "DCloudPermissionPush.h"
+  export *
+
+  module * { export * }
+}
+
+module DCloudPermissionPush.Swift {
+  header "DCloudPermissionPush-Swift.h"
+  requires objc
+}

@@ -1,0 +1,17 @@
+export type NativeBridgeOptions = {
+  methodName : string
+  data : string
+}
+
+export type NativeBridgeMessage = {
+  methodName : string
+  data : string
+}
+
+export type OpenNativeBridge = (options : NativeBridgeOptions) => void
+
+export type NativeBridgeMessageCallback = (message : NativeBridgeMessage) => void
+
+export type OnNativeBridgeMessage = (callback : NativeBridgeMessageCallback) => void
+
+export type OffNativeBridgeMessage = () => void

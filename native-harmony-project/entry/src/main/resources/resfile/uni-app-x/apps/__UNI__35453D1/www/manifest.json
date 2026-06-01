@@ -1,0 +1,19 @@
+{
+  "id": "__UNI__35453D1",
+  "name": "uniappdemo",
+  "description": "A simple uni-app-x shopping demo.",
+  "version": {
+    "name": "1.0.0",
+    "code": "100"
+  },
+  "uni-app-x": {
+    "compilerVersion": "5.07"
+  },
+  "app-harmony": {
+    "distribute": {
+      "modules": {
+        "uni-prompt": {}
+      }
+    }
+  }
+}

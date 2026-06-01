@@ -1,0 +1,11 @@
+{
+  "modelVersion": "5.0.4",
+  "description": "Native Harmony verification project for uni-app x.",
+  "dependencies": {
+    "@dcloudio/uni-app-x-runtime": "5.0.32026031301"
+  },
+  "devDependencies": {
+    "@ohos/hypium": "1.0.21",
+    "@ohos/hamock": "1.0.0"
+  }
+}

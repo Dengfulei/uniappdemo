@@ -1,0 +1,480 @@
+<template>
+  <scroll-view class="page-scroll" :scroll-y="true">
+    <view class="page-content">
+      <view class="topbar">
+        <view>
+          <text class="eyebrow">SPRING MARKET</text>
+          <text class="title">今日好物</text>
+        </view>
+        <button class="login-button" @click="goLogin">
+          <text class="login-text">登录</text>
+        </button>
+      </view>
+
+      <view class="hero">
+        <view class="hero-copy">
+          <text class="hero-kicker">限时精选</text>
+          <text class="hero-title">把周末餐桌和日常补给一次配齐</text>
+          <text class="hero-desc">新鲜、轻量、适合移动端浏览的商品陈列示例。</text>
+        </view>
+        <view class="hero-badge">
+          <text class="badge-value">8</text>
+          <text class="badge-label">件上新</text>
+        </view>
+      </view>
+
+      <view class="section-head">
+        <text class="section-title">商品列表</text>
+        <text class="section-note">测试数据</text>
+      </view>
+
+      <view class="native-demo">
+        <view class="native-demo-copy">
+          <text class="native-demo-title">iOS UTS 原生插件</text>
+          <text class="native-demo-desc">{{ iosNativeDemoText }}</text>
+        </view>
+        <view class="native-demo-actions">
+          <button class="native-demo-button" @click="runIosNativeDemo">
+            <text class="native-demo-button-text">调用插件</text>
+          </button>
+          <button class="native-demo-button native-demo-button-secondary" @click="openIosAlbumDemo">
+            <text class="native-demo-button-text">打开相册</text>
+          </button>
+        </view>
+      </view>
+
+      <view class="product-list">
+        <view class="product-card" v-for="item in products" :key="item.id" @click="goProductDetail(item)">
+          <view class="product-art" :style="{ backgroundColor: item.color }">
+            <text class="product-emoji">{{ item.icon }}</text>
+          </view>
+          <view class="product-info">
+            <view class="product-row">
+              <text class="product-name">{{ item.name }}</text>
+              <text class="product-price">¥{{ item.price }}</text>
+            </view>
+            <text class="product-desc">{{ item.desc }}</text>
+            <view class="meta-row">
+              <text class="tag">{{ item.tag }}</text>
+              <text class="sold">已售 {{ item.sold }}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</template>
+
+<script>
+import { NativeBridgeMessage, NativeBridgeOptions, offNativeBridgeMessage, onNativeBridgeMessage, openNativeBridge } from '@/uni_modules/native-bridge'
+import { copyIosNativeDemoText, getIosNativeDemoInfo, openIosNativeAlbum } from '@/uni_modules/ios-native-demo'
+
+type Product = {
+  id: number
+  name: string
+  price: string
+  desc: string
+  tag: string
+  sold: number
+  icon: string
+  color: string
+}
+
+export default {
+  data() {
+    return {
+      iosNativeDemoText: '点击按钮读取 iOS 设备信息，并写入系统剪贴板。',
+      products: [
+        {
+          id: 1,
+          name: '手冲咖啡豆',
+          price: '68.00',
+          desc: '浅烘焙，柑橘和蜂蜜香气，适合早晨醒脑。',
+          tag: '饮品',
+          sold: 238,
+          icon: '☕',
+          color: '#d9b07a'
+        },
+        {
+          id: 2,
+          name: '有机蓝莓盒',
+          price: '36.90',
+          desc: '酸甜均衡，可直接食用，也适合搭配酸奶。',
+          tag: '水果',
+          sold: 521,
+          icon: '🫐',
+          color: '#7d8fc8'
+        },
+        {
+          id: 3,
+          name: '山茶花洗护套装',
+          price: '129.00',
+          desc: '清爽花香，旅行和日常都能轻松收纳。',
+          tag: '个护',
+          sold: 96,
+          icon: '✦',
+          color: '#d9868c'
+        },
+        {
+          id: 4,
+          name: '轻食鸡胸沙拉',
+          price: '24.50',
+          desc: '高蛋白轻负担，午餐时段的稳妥选择。',
+          tag: '轻食',
+          sold: 314,
+          icon: '🥗',
+          color: '#91b77f'
+        },
+        {
+          id: 5,
+          name: '亚麻收纳篮',
+          price: '45.00',
+          desc: '柔软布面和硬挺边缘，适合桌面小物整理。',
+          tag: '家居',
+          sold: 185,
+          icon: '▣',
+          color: '#c49a68'
+        },
+        {
+          id: 6,
+          name: '便携香薰蜡烛',
+          price: '59.00',
+          desc: '雪松、无花果与干净皂感，睡前刚刚好。',
+          tag: '香氛',
+          sold: 127,
+          icon: '◐',
+          color: '#85a7a1'
+        }
+      ] as Product[]
+    }
+  },
+  onLoad() {
+	
+    onNativeBridgeMessage((message : NativeBridgeMessage) => {
+      this.handleNativeBridgeMessage(message)
+    })
+  },
+  onUnload() {
+    offNativeBridgeMessage()
+  },
+  methods: {
+    goLogin() {
+      uni.navigateTo({
+        url: '/pages/login/login'
+      })
+    },
+    goProductDetail(item: Product) {
+      const data = JSON.stringify({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        desc: item.desc,
+        tag: item.tag,
+        sold: item.sold,
+        icon: item.icon,
+        color: item.color
+      })
+
+      const options = {
+        methodName: 'productDetail',
+        data: data
+      } as NativeBridgeOptions
+
+      openNativeBridge(options)
+    },
+    runIosNativeDemo() {
+      const info = getIosNativeDemoInfo()
+      const text = `${info.systemName} ${info.systemVersion} / ${info.deviceName}`
+      const copied = copyIosNativeDemoText(`uni-app x 调用 iOS UTS 插件成功：${text}`)
+
+      this.iosNativeDemoText = copied ? `已调用 iOS 原生能力：${text}` : `已读取设备信息：${text}`
+      uni.showToast({
+        title: copied ? 'iOS 插件调用成功' : '已读取设备信息',
+        icon: 'none'
+      })
+    },
+    openIosAlbumDemo() {
+      const opened = openIosNativeAlbum((result) => {
+        this.iosNativeDemoText = `${result.message}${result.mediaType != '' ? `：${result.mediaType}` : ''}`
+      })
+
+      if (!opened) {
+        uni.showToast({
+          title: '相册不可用',
+          icon: 'none'
+        })
+        return
+      }
+
+      uni.showToast({
+        title: '正在打开相册',
+        icon: 'none'
+      })
+    },
+    handleNativeBridgeMessage(message: NativeBridgeMessage) {
+      if (message.methodName == 'productNameTap') {
+        console.log(`收到原生商品标题点击消息: ${message.data}`)
+        uni.showToast({
+          title: '收到原生消息',
+          icon: 'none'
+        })
+        return
+      }
+
+      console.log(`收到原生消息: ${message.methodName}, data: ${message.data}`)
+    }
+  }
+}
+</script>
+
+<style>
+.page-scroll {
+  flex: 1;
+  height: 100%;
+  background-color: #f6f1e8;
+}
+
+.page-content {
+  padding: 24px 18px 34px;
+}
+
+.topbar {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.eyebrow {
+  color: #89704d;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.title {
+  margin-top: 4px;
+  color: #20302d;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.login-button {
+  width: 74px;
+  height: 38px;
+  border-radius: 19px;
+  background-color: #20302d;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-text {
+  color: #f8f0df;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.hero {
+  min-height: 168px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #20302d;
+  flex-direction: row;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.hero-copy {
+  width: 226px;
+}
+
+.hero-kicker {
+  color: #e6b866;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.hero-title {
+  margin-top: 10px;
+  color: #fff8ec;
+  font-size: 25px;
+  line-height: 34px;
+  font-weight: 700;
+}
+
+.hero-desc {
+  margin-top: 10px;
+  color: #bfd0c8;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.hero-badge {
+  width: 72px;
+  height: 92px;
+  border-radius: 8px;
+  background-color: #e6b866;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge-value {
+  color: #20302d;
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.badge-label {
+  color: #20302d;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.section-head {
+  margin-top: 26px;
+  margin-bottom: 12px;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.section-title {
+  color: #20302d;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.section-note {
+  color: #8a7a61;
+  font-size: 12px;
+}
+
+.native-demo {
+  margin-bottom: 14px;
+  padding: 14px;
+  border-radius: 8px;
+  background-color: #fffaf1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 8px 18px rgba(36, 45, 41, 0.08);
+}
+
+.native-demo-copy {
+  flex: 1;
+  padding-right: 12px;
+}
+
+.native-demo-actions {
+  width: 96px;
+}
+
+.native-demo-title {
+  color: #20302d;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.native-demo-desc {
+  margin-top: 6px;
+  color: #70634e;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.native-demo-button {
+  width: 92px;
+  height: 38px;
+  border-radius: 8px;
+  background-color: #c46141;
+  align-items: center;
+  justify-content: center;
+}
+
+.native-demo-button-secondary {
+  margin-top: 8px;
+  background-color: #20302d;
+}
+
+.native-demo-button-text {
+  color: #fffaf1;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.product-card {
+  margin-bottom: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #fffaf1;
+  flex-direction: row;
+  box-shadow: 0 8px 18px rgba(36, 45, 41, 0.08);
+}
+
+.product-art {
+  width: 76px;
+  height: 86px;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-emoji {
+  color: #fffaf1;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.product-info {
+  flex: 1;
+  margin-left: 12px;
+  justify-content: space-between;
+}
+
+.product-row {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.product-name {
+  width: 136px;
+  color: #20302d;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.product-price {
+  color: #c46141;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.product-desc {
+  margin-top: 7px;
+  color: #70634e;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.meta-row {
+  margin-top: 9px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tag {
+  padding: 4px 9px;
+  border-radius: 8px;
+  color: #20302d;
+  background-color: #ead9bb;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.sold {
+  color: #9b8a6f;
+  font-size: 11px;
+}
+</style>

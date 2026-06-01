@@ -1,0 +1,67 @@
+{
+  "id": "ios-native-demo",
+  "displayName": "ios-native-demo",
+  "version": "1.0.0",
+  "description": "Minimal iOS native UTS plugin demo for uni-app x.",
+  "keywords": [
+    "uni-app-x",
+    "uts",
+    "ios",
+    "native"
+  ],
+  "repository": "",
+  "engines": {
+    "HBuilderX": "^5.0.0",
+    "uni-app-x": "^3.1.0"
+  },
+  "dcloudext": {
+    "type": "uts",
+    "sale": {
+      "regular": {
+        "price": "0.00"
+      },
+      "sourcecode": {
+        "price": "0.00"
+      }
+    },
+    "contact": {
+      "qq": ""
+    },
+    "declaration": {
+      "ads": "",
+      "data": "",
+      "permissions": ""
+    },
+    "npmurl": "",
+    "darkmode": "-",
+    "i18n": "-",
+    "widescreen": "-"
+  },
+  "uni_modules": {
+    "dependencies": [],
+    "encrypt": [],
+    "platforms": {
+      "cloud": {
+        "tcb": "-",
+        "aliyun": "-",
+        "alipay": "-"
+      },
+      "client": {
+        "uni-app-x": {
+          "web": {
+            "safari": "-",
+            "chrome": "-"
+          },
+          "app": {
+            "android": "-",
+            "ios": "y",
+            "harmony": "-"
+          },
+          "mp": {
+            "weixin": "-"
+          }
+        }
+      }
+    }
+  }
+}

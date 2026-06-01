@@ -1,0 +1,66 @@
+{
+  "id": "native-bridge",
+  "displayName": "native-bridge",
+  "version": "1.0.0",
+  "description": "Open native product detail pages from uni-app-x.",
+  "keywords": [
+    "uni-app-x",
+    "uts",
+    "native"
+  ],
+  "repository": "",
+  "engines": {
+    "HBuilderX": "^5.0.0",
+    "uni-app-x": "^3.1.0"
+  },
+  "dcloudext": {
+    "type": "uts",
+    "sale": {
+      "regular": {
+        "price": "0.00"
+      },
+      "sourcecode": {
+        "price": "0.00"
+      }
+    },
+    "contact": {
+      "qq": ""
+    },
+    "declaration": {
+      "ads": "",
+      "data": "",
+      "permissions": ""
+    },
+    "npmurl": "",
+    "darkmode": "-",
+    "i18n": "-",
+    "widescreen": "-"
+  },
+  "uni_modules": {
+    "dependencies": [],
+    "encrypt": [],
+    "platforms": {
+      "cloud": {
+        "tcb": "-",
+        "aliyun": "-",
+        "alipay": "-"
+      },
+      "client": {
+        "uni-app-x": {
+          "web": {
+            "safari": "-",
+            "chrome": "-"
+          },
+          "app": {
+            "android": "y",
+            "ios": "y",
+            "harmony": "y"
+          },
+          "mp": {
+            "weixin": "-"
+          }
+        }
+      }
+    }
+  }
+}
