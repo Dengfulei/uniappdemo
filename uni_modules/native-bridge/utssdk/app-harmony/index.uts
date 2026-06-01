@@ -1,16 +1,13 @@
 import commonEventManager from '@ohos.commonEventManager'
-import { CommonEventData } from '@ohos.commonEventManager'
-import { CommonEventSubscriber } from '@ohos.commonEventManager'
 import Want from '@ohos.app.ability.Want'
 import { NativeBridgeMessage, NativeBridgeMessageCallback, NativeBridgeOptions, OffNativeBridgeMessage, OnNativeBridgeMessage, OpenNativeBridge } from '../interface.uts'
 
 const uniAppXMessageHarmonyEvent = 'com.dcloud.uniappdemo.UNI_APP_X_MESSAGE'
-const nativeBridgeExtraMethodName = 'methodName'
-const nativeBridgeExtraData = 'data'
 const nativeBridgeHarmonyAbilityName = 'ProductDetailAbility'
 const nativeBridgeMethodProductDetail = 'productDetail'
+const nativeBridgeMethodProductNameTap = 'productNameTap'
 let nativeBridgeMessageCallback : NativeBridgeMessageCallback | null = null
-let nativeBridgeMessageSubscriber : CommonEventSubscriber | null = null
+let nativeBridgeMessageSubscriber : commonEventManager.CommonEventSubscriber | null = null
 
 function openNativeAbility(options : NativeBridgeOptions) : boolean {
   try {
@@ -19,8 +16,8 @@ function openNativeAbility(options : NativeBridgeOptions) : boolean {
     want.bundleName = context.applicationInfo.name
     want.abilityName = nativeBridgeHarmonyAbilityName
     want.parameters = {
-      [nativeBridgeExtraMethodName]: options.methodName,
-      [nativeBridgeExtraData]: options.data
+      methodName: options.methodName,
+      data: options.data
     }
 
     context.startAbility(want).catch((error : Error) => {
@@ -51,21 +48,21 @@ export const onNativeBridgeMessage : OnNativeBridgeMessage = function (callback 
   offNativeBridgeMessage()
   nativeBridgeMessageCallback = callback
 
-  commonEventManager.createSubscriber({
+  const subscribeInfo = {
     events: [uniAppXMessageHarmonyEvent]
-  }).then((subscriber : CommonEventSubscriber) => {
+  } as commonEventManager.CommonEventSubscribeInfo
+
+  commonEventManager.createSubscriber(subscribeInfo).then((subscriber : commonEventManager.CommonEventSubscriber) => {
     nativeBridgeMessageSubscriber = subscriber
-    commonEventManager.subscribe(subscriber, (error, eventData : CommonEventData) => {
+    commonEventManager.subscribe(subscriber, (error, eventData : commonEventManager.CommonEventData) => {
       if (error != null) {
         console.log(`native-bridge harmony subscribe failed: ${error}`)
         return
       }
 
-      const parameters = eventData.parameters
-      const methodName = `${parameters?.[nativeBridgeExtraMethodName] ?? ''}`
-      const data = `${parameters?.[nativeBridgeExtraData] ?? eventData.data ?? ''}`
+      const data = eventData.data ?? ''
       const message = {
-        methodName,
+        methodName: nativeBridgeMethodProductNameTap,
         data
       } as NativeBridgeMessage
       nativeBridgeMessageCallback?.(message)

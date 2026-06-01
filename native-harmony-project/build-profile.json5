@@ -53,7 +53,7 @@
       ]
     },
     {
-      "name": "uni_modules__ios_native_demo",
+      "name": "uni_modules__native_demo",
       "srcPath": "./uni_modules/native-demo"
     },
     {

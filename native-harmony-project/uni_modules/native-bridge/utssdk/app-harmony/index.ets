@@ -1,8 +1,6 @@
 import Want from '@ohos.app.ability.Want';
 import commonEventManager from '@ohos.commonEventManager';
-import { CommonEventData } from '@ohos.commonEventManager';
-import { CommonEventSubscriber } from '@ohos.commonEventManager';
-import { UTSObject, UTSHarmony, UTS, UTSJSONObject } from "@dcloudio/uni-app-x-runtime";
+import { UTSObject, UTSHarmony, UTS } from "@dcloudio/uni-app-x-runtime";
 class NativeBridgeOptions extends UTSObject {
     methodName!: string;
     data!: string;
@@ -16,12 +14,11 @@ type NativeBridgeMessageCallback = (message: NativeBridgeMessage) => void;
 type OnNativeBridgeMessage = (callback: NativeBridgeMessageCallback) => void;
 type OffNativeBridgeMessage = () => void;
 const uniAppXMessageHarmonyEvent = 'com.dcloud.uniappdemo.UNI_APP_X_MESSAGE';
-const nativeBridgeExtraMethodName = 'methodName';
-const nativeBridgeExtraData = 'data';
 const nativeBridgeHarmonyAbilityName = 'ProductDetailAbility';
 const nativeBridgeMethodProductDetail = 'productDetail';
+const nativeBridgeMethodProductNameTap = 'productNameTap';
 let nativeBridgeMessageCallback: NativeBridgeMessageCallback | null = null;
-let nativeBridgeMessageSubscriber: CommonEventSubscriber | null = null;
+let nativeBridgeMessageSubscriber: commonEventManager.CommonEventSubscriber | null = null;
 function openNativeAbility(options: NativeBridgeOptions): boolean {
     try {
         const context = UTSHarmony.getUIAbilityContext();
@@ -29,8 +26,8 @@ function openNativeAbility(options: NativeBridgeOptions): boolean {
         want.bundleName = context.applicationInfo.name;
         want.abilityName = nativeBridgeHarmonyAbilityName;
         want.parameters = {
-            [nativeBridgeExtraMethodName]: options.methodName,
-            [nativeBridgeExtraData]: options.data
+            methodName: options.methodName,
+            data: options.data
         };
         context.startAbility(want).catch((error: Error)=>{
             UTS.console.log(`native-bridge harmony open failed: ${error}`);
@@ -56,22 +53,21 @@ const openNativeBridge: OpenNativeBridge = (options: NativeBridgeOptions)=>{
 const onNativeBridgeMessage: OnNativeBridgeMessage = (callback: NativeBridgeMessageCallback)=>{
     offNativeBridgeMessage();
     nativeBridgeMessageCallback = callback;
-    commonEventManager.createSubscriber(new UTSJSONObject({
+    const subscribeInfo = {
         events: [
             uniAppXMessageHarmonyEvent
         ]
-    })).then((subscriber: CommonEventSubscriber)=>{
+    } as commonEventManager.CommonEventSubscribeInfo;
+    commonEventManager.createSubscriber(subscribeInfo).then((subscriber: commonEventManager.CommonEventSubscriber)=>{
         nativeBridgeMessageSubscriber = subscriber;
-        commonEventManager.subscribe(subscriber, (error, eventData: CommonEventData)=>{
+        commonEventManager.subscribe(subscriber, (error, eventData: commonEventManager.CommonEventData)=>{
             if (error != null) {
                 UTS.console.log(`native-bridge harmony subscribe failed: ${error}`);
                 return;
             }
-            const parameters = eventData.parameters;
-            const methodName = `${parameters?.[nativeBridgeExtraMethodName] ?? ''}`;
-            const data = `${parameters?.[nativeBridgeExtraData] ?? eventData.data ?? ''}`;
+            const data = eventData.data ?? '';
             const message = {
-                methodName,
+                methodName: nativeBridgeMethodProductNameTap,
                 data
             } as NativeBridgeMessage;
             nativeBridgeMessageCallback?.(message);
