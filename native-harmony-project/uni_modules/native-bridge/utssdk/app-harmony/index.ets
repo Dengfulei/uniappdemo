@@ -44,7 +44,7 @@ class NativeBridgeMessageManager {
     }
     static open(options: NativeBridgeOptions) {
         if (options.methodName == nativeBridgeMethodProductDetail) {
-            if (!this.openNativeAbility(options)) {
+            if (!NativeBridgeMessageManager.openNativeAbility(options)) {
                 UTS.console.log(`native-bridge harmony productDetail fallback data: ${options.data}`);
             }
             return;
@@ -52,36 +52,36 @@ class NativeBridgeMessageManager {
         UTS.console.log(`native-bridge harmony ignored methodName: ${options.methodName}`);
     }
     static addListener(callback: NativeBridgeMessageCallback) {
-        this.removeListener();
-        this.listener = callback;
+        NativeBridgeMessageManager.removeListener();
+        NativeBridgeMessageManager.listener = callback;
         const subscribeInfo = {
             events: [
                 uniAppXMessageHarmonyEvent
             ]
         } as commonEventManager.CommonEventSubscribeInfo;
         commonEventManager.createSubscriber(subscribeInfo).then((subscriber: commonEventManager.CommonEventSubscriber)=>{
-            this.subscriber = subscriber;
+            NativeBridgeMessageManager.subscriber = subscriber;
             commonEventManager.subscribe(subscriber, (error, eventData: commonEventManager.CommonEventData)=>{
                 if (error != null) {
                     UTS.console.log(`native-bridge harmony subscribe failed: ${error}`);
                     return;
                 }
-                this.handleReceiveMessage(eventData);
+                NativeBridgeMessageManager.handleReceiveMessage(eventData);
             });
         }).catch((error: Error)=>{
             UTS.console.log(`native-bridge harmony create subscriber failed: ${error}`);
         });
     }
     static removeListener() {
-        if (this.subscriber != null) {
-            commonEventManager.unsubscribe(this.subscriber!, (error)=>{
+        if (NativeBridgeMessageManager.subscriber != null) {
+            commonEventManager.unsubscribe(NativeBridgeMessageManager.subscriber!, (error)=>{
                 if (error != null) {
                     UTS.console.log(`native-bridge harmony unsubscribe failed: ${error}`);
                 }
             });
         }
-        this.subscriber = null;
-        this.listener = null;
+        NativeBridgeMessageManager.subscriber = null;
+        NativeBridgeMessageManager.listener = null;
     }
     static handleReceiveMessage(eventData: commonEventManager.CommonEventData) {
         const data = eventData.data ?? '';
@@ -89,7 +89,7 @@ class NativeBridgeMessageManager {
             methodName: nativeBridgeMethodProductNameTap,
             data
         } as NativeBridgeMessage;
-        this.listener?.(message);
+        NativeBridgeMessageManager.listener?.(message);
     }
 }
 const openNativeBridge: OpenNativeBridge = (options: NativeBridgeOptions)=>{
