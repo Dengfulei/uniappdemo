@@ -4,22 +4,22 @@ import { NativeBridgeMessage, NativeBridgeMessageCallback, NativeBridgeOptions, 
 const nativeBridgeEventName = 'UniAppXNativeBridge'
 const uniAppXMessageEventName = 'UniAppXNativeMessage'
 
-export const openNativeBridge : OpenNativeBridge = function (options : NativeBridgeOptions) {
-  if (options.methodName == '') {
-    console.log(`native-bridge ignored empty methodName`)
-    return
-  }
-
-  const notificationName = new Notification.Name(nativeBridgeEventName)
-  const userInfo = new Map<string, any>()
-  userInfo.set('methodName', options.methodName!)
-  userInfo.set('data', options.data!)
-
-  NotificationCenter.default.post(name = notificationName, object = null, userInfo = userInfo)
-}
-
 class NativeBridgeMessageManager extends NSObject {
   static listener : NativeBridgeMessageCallback | null = null
+
+  static open(options : NativeBridgeOptions) {
+    if (options.methodName == '') {
+      console.log(`native-bridge ignored empty methodName`)
+      return
+    }
+
+    const notificationName = new Notification.Name(nativeBridgeEventName)
+    const userInfo = new Map<string, any>()
+    userInfo.set('methodName', options.methodName!)
+    userInfo.set('data', options.data!)
+
+    NotificationCenter.default.post(name = notificationName, object = null, userInfo = userInfo)
+  }
 
   static addListener(callback : NativeBridgeMessageCallback) {
     this.listener = callback
@@ -47,6 +47,10 @@ class NativeBridgeMessageManager extends NSObject {
     } as NativeBridgeMessage
     this.listener?.(message)
   }
+}
+
+export const openNativeBridge : OpenNativeBridge = function (options : NativeBridgeOptions) {
+  NativeBridgeMessageManager.open(options)
 }
 
 export const onNativeBridgeMessage : OnNativeBridgeMessage = function (callback : NativeBridgeMessageCallback) {
