@@ -46,7 +46,7 @@
 		937659882C2D60A900D52792 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 937659872C2D60A900D52792 /* PrivacyInfo.xcprivacy */; };
 		9376598C2FCB9E3B00D52792 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9376598B2FCB9E3B00D52792 /* ProductDetailViewController.swift */; };
 		937659902FC972C900D52792 /* native-bridge-index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9376598F2FC972C900D52792 /* native-bridge-index.swift */; };
-		937659922FC972C900D52792 /* ios-native-demo-index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937659912FC972C900D52792 /* ios-native-demo-index.swift */; };
+		937659922FC972C900D52792 /* native-demo-index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937659912FC972C900D52792 /* native-demo-index.swift */; };
 		937659972C2D623D00D52792 /* DCloudUTSFoundation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9376598A2C2D623400D52792 /* DCloudUTSFoundation.xcframework */; };
 		937659982C2D623D00D52792 /* DCloudUTSFoundation.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9376598A2C2D623400D52792 /* DCloudUTSFoundation.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		937659F42C2D7A7900D52792 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 937659F32C2D7A7900D52792 /* libc++.tbd */; };
@@ -148,7 +148,7 @@
 		937659872C2D60A900D52792 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		9376598B2FCB9E3B00D52792 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		9376598F2FC972C900D52792 /* native-bridge-index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "native-bridge-index.swift"; path = "uni-app-x/uni_modules/native-bridge/utssdk/app-ios/src/index.swift"; sourceTree = "<group>"; };
-		937659912FC972C900D52792 /* ios-native-demo-index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ios-native-demo-index.swift"; path = "uni-app-x/uni_modules/ios-native-demo/utssdk/app-ios/src/ios-native-demo-index.swift"; sourceTree = "<group>"; };
+		937659912FC972C900D52792 /* native-demo-index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "native-demo-index.swift"; path = "uni-app-x/uni_modules/native-demo/utssdk/app-ios/src/native-demo-index.swift"; sourceTree = "<group>"; };
 		9376598A2C2D623400D52792 /* DCloudUTSFoundation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = DCloudUTSFoundation.xcframework; path = SDK/Libs/DCloudUTSFoundation.xcframework; sourceTree = "<group>"; };
 		937659F32C2D7A7900D52792 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		937659F52C2D7A7E00D52792 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -258,7 +258,7 @@
 				937659852C2D608600D52792 /* UniAppBridge.swift */,
 				9376598B2FCB9E3B00D52792 /* ProductDetailViewController.swift */,
 				9376598F2FC972C900D52792 /* native-bridge-index.swift */,
-				937659912FC972C900D52792 /* ios-native-demo-index.swift */,
+				937659912FC972C900D52792 /* native-demo-index.swift */,
 				937659842C2D608600D52792 /* UniAppXDemo-Bridging-Header.h */,
 			);
 			path = UniAppXDemo;
@@ -396,7 +396,7 @@
 				937659862C2D608600D52792 /* UniAppBridge.swift in Sources */,
 				9376598C2FCB9E3B00D52792 /* ProductDetailViewController.swift in Sources */,
 				937659902FC972C900D52792 /* native-bridge-index.swift in Sources */,
-				937659922FC972C900D52792 /* ios-native-demo-index.swift in Sources */,
+				937659922FC972C900D52792 /* native-demo-index.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

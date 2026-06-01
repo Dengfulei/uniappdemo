@@ -51,6 +51,14 @@
           ]
         }
       ]
+    },
+    {
+      "name": "uni_modules__ios_native_demo",
+      "srcPath": "./uni_modules/native-demo"
+    },
+    {
+      "name": "uni_modules__native_bridge",
+      "srcPath": "./uni_modules/native-bridge"
     }
   ]
 }

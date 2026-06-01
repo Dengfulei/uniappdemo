@@ -10,8 +10,8 @@ The project is based on DCloud's official `UniAppX-iOS@5.07` native SDK demo pro
 - Runtime version in `Info.plist`: `5.07`
 - App resources: `UniAppXDemo/uni-app-x/apps/__UNI__35453D1`
 - UTS plugin resources: `UniAppXDemo/uni-app-x/uni_modules`
-- iOS UTS demo plugin source: `../uni_modules/ios-native-demo`
-- iOS UTS demo generated Swift sample: `UniAppXDemo/uni-app-x/uni_modules/ios-native-demo/utssdk/app-ios/src/ios-native-demo-index.swift`
+- iOS UTS demo plugin source: `../uni_modules/native-demo`
+- iOS UTS demo generated Swift sample: `UniAppXDemo/uni-app-x/uni_modules/native-demo/utssdk/app-ios/src/native-demo-index.swift`
 
 Official references:
 

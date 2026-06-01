@@ -1,8 +1,8 @@
 import { Date, NSObject } from 'Foundation'
 import { UIImagePickerController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIDevice, UIPasteboard } from 'UIKit'
-import { CopyIosNativeDemoText, GetIosNativeDemoInfo, IosNativeAlbumCallback, IosNativeAlbumResult, IosNativeDemoInfo, OpenIosNativeAlbum } from '../interface.uts'
+import { CopyNativeDemoText, GetNativeDemoInfo, NativeAlbumCallback, NativeAlbumResult, NativeDemoInfo, OpenNativeAlbum } from '../interface.uts'
 
-export const getIosNativeDemoInfo : GetIosNativeDemoInfo = function () : IosNativeDemoInfo {
+export const getNativeDemoInfo : GetNativeDemoInfo = function () : NativeDemoInfo {
   const device = UIDevice.current
 
   return {
@@ -12,25 +12,25 @@ export const getIosNativeDemoInfo : GetIosNativeDemoInfo = function () : IosNati
     systemVersion: device.systemVersion,
     model: device.model,
     timestamp: `${Date.now()}`
-  } as IosNativeDemoInfo
+  } as NativeDemoInfo
 }
 
-export const copyIosNativeDemoText : CopyIosNativeDemoText = function (text : string) : boolean {
+export const copyNativeDemoText : CopyNativeDemoText = function (text : string) : boolean {
   UIPasteboard.general.string = text
   return UIPasteboard.general.string == text
 }
 
-class IosNativeAlbumPickerManager extends NSObject implements UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-  static shared : IosNativeAlbumPickerManager | null = null
-  callback : IosNativeAlbumCallback | null = null
+class NativeAlbumPickerManager extends NSObject implements UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+  static shared : NativeAlbumPickerManager | null = null
+  callback : NativeAlbumCallback | null = null
 
-  open(callback : IosNativeAlbumCallback) : boolean {
+  open(callback : NativeAlbumCallback) : boolean {
     if (!UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary)) {
       callback({
         action: 'unavailable',
         message: '当前设备不可用系统相册',
         mediaType: ''
-      } as IosNativeAlbumResult)
+      } as NativeAlbumResult)
       return false
     }
 
@@ -45,7 +45,7 @@ class IosNativeAlbumPickerManager extends NSObject implements UIImagePickerContr
       action: 'opened',
       message: '已打开 iOS 系统相册',
       mediaType: 'public.image'
-    } as IosNativeAlbumResult)
+    } as NativeAlbumResult)
     return true
   }
 
@@ -61,7 +61,7 @@ class IosNativeAlbumPickerManager extends NSObject implements UIImagePickerContr
       action: 'selected',
       message: '已从 iOS 系统相册选择资源',
       mediaType: mediaType
-    } as IosNativeAlbumResult)
+    } as NativeAlbumResult)
   }
 
   imagePickerControllerDidCancel(param1 : UIImagePickerController) {
@@ -70,11 +70,11 @@ class IosNativeAlbumPickerManager extends NSObject implements UIImagePickerContr
       action: 'cancel',
       message: '已取消选择',
       mediaType: ''
-    } as IosNativeAlbumResult)
+    } as NativeAlbumResult)
   }
 }
 
-export const openIosNativeAlbum : OpenIosNativeAlbum = function (callback : IosNativeAlbumCallback) : boolean {
-  IosNativeAlbumPickerManager.shared = new IosNativeAlbumPickerManager()
-  return IosNativeAlbumPickerManager.shared!.open(callback)
+export const openNativeAlbum : OpenNativeAlbum = function (callback : NativeAlbumCallback) : boolean {
+  NativeAlbumPickerManager.shared = new NativeAlbumPickerManager()
+  return NativeAlbumPickerManager.shared!.open(callback)
 }

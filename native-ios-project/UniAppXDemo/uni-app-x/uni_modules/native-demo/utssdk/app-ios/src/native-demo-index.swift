@@ -2,9 +2,9 @@ import DCloudUTSFoundation
 import DCloudUniappRuntime
 import Foundation
 import UIKit
-@objc(UTSSDKModulesIosNativeDemoIosNativeDemoInfo)
+@objc(UTSSDKModulesNativeDemoNativeDemoInfo)
 @objcMembers
-public class IosNativeDemoInfo : NSObject, UTSObject {
+public class NativeDemoInfo : NSObject, UTSObject {
     public var platform: String!
     public var deviceName: String!
     public var systemName: String!
@@ -46,11 +46,11 @@ public class IosNativeDemoInfo : NSObject, UTSObject {
         self.timestamp = obj["timestamp"] as! String
     }
 }
-public typealias GetIosNativeDemoInfo = () -> IosNativeDemoInfo
-public typealias CopyIosNativeDemoText = (_ text: String) -> Bool
-@objc(UTSSDKModulesIosNativeDemoIosNativeAlbumResult)
+public typealias GetNativeDemoInfo = () -> NativeDemoInfo
+public typealias CopyNativeDemoText = (_ text: String) -> Bool
+@objc(UTSSDKModulesNativeDemoNativeAlbumResult)
 @objcMembers
-public class IosNativeAlbumResult : NSObject, UTSObject {
+public class NativeAlbumResult : NSObject, UTSObject {
     public var action: String!
     public var message: String!
     public var mediaType: String!
@@ -80,12 +80,12 @@ public class IosNativeAlbumResult : NSObject, UTSObject {
         self.mediaType = obj["mediaType"] as! String
     }
 }
-public typealias IosNativeAlbumCallback = (_ result: IosNativeAlbumResult) -> Void
-public typealias OpenIosNativeAlbum = (_ callback: @escaping IosNativeAlbumCallback) -> Bool
-public var getIosNativeDemoInfo: GetIosNativeDemoInfo = {
-() -> IosNativeDemoInfo in
+public typealias NativeAlbumCallback = (_ result: NativeAlbumResult) -> Void
+public typealias OpenNativeAlbum = (_ callback: @escaping NativeAlbumCallback) -> Bool
+public var getNativeDemoInfo: GetNativeDemoInfo = {
+() -> NativeDemoInfo in
 var device = UIDevice.current
-return IosNativeDemoInfo(UTSJSONObject([
+return NativeDemoInfo(UTSJSONObject([
     "platform": "iOS",
     "deviceName": device.name,
     "systemName": device.systemName,
@@ -96,19 +96,19 @@ return IosNativeDemoInfo(UTSJSONObject([
 """
 ]))
 }
-public var copyIosNativeDemoText: CopyIosNativeDemoText = {
+public var copyNativeDemoText: CopyNativeDemoText = {
 (_ text: String) -> Bool in
 UIPasteboard.general.string = text
 return UIPasteboard.general.string == text
 }
-@objc(UTSSDKModulesIosNativeDemoIosNativeAlbumPickerManager)
+@objc(UTSSDKModulesNativeDemoNativeAlbumPickerManager)
 @objcMembers
-public class IosNativeAlbumPickerManager : NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    public static var shared: IosNativeAlbumPickerManager? = nil
-    public var callback: IosNativeAlbumCallback? = nil
-    public func `open`(_ callback: @escaping IosNativeAlbumCallback) -> Bool {
+public class NativeAlbumPickerManager : NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    public static var shared: NativeAlbumPickerManager? = nil
+    public var callback: NativeAlbumCallback? = nil
+    public func `open`(_ callback: @escaping NativeAlbumCallback) -> Bool {
         if (!UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary)) {
-            callback(IosNativeAlbumResult(UTSJSONObject([
+            callback(NativeAlbumResult(UTSJSONObject([
                 "action": "unavailable",
                 "message": "当前设备不可用系统相册",
                 "mediaType": ""
@@ -123,7 +123,7 @@ public class IosNativeAlbumPickerManager : NSObject, UIImagePickerControllerDele
             "public.image"
         ]
         UTSiOS.getCurrentViewController().present(pickerController, animated: true, completion: nil)
-        callback(IosNativeAlbumResult(UTSJSONObject([
+        callback(NativeAlbumResult(UTSJSONObject([
             "action": "opened",
             "message": "已打开 iOS 系统相册",
             "mediaType": "public.image"
@@ -139,7 +139,7 @@ public class IosNativeAlbumPickerManager : NSObject, UIImagePickerControllerDele
 \(info.get(UIImagePickerController.InfoKey.mediaType) ?? "public.image")
 """
         self.dismiss(param1)
-        self.callback?(IosNativeAlbumResult(UTSJSONObject([
+        self.callback?(NativeAlbumResult(UTSJSONObject([
             "action": "selected",
             "message": "已从 iOS 系统相册选择资源",
             "mediaType": mediaType
@@ -147,40 +147,40 @@ public class IosNativeAlbumPickerManager : NSObject, UIImagePickerControllerDele
     }
     public func imagePickerControllerDidCancel(_ param1: UIImagePickerController) {
         self.dismiss(param1)
-        self.callback?(IosNativeAlbumResult(UTSJSONObject([
+        self.callback?(NativeAlbumResult(UTSJSONObject([
             "action": "cancel",
             "message": "已取消选择",
             "mediaType": ""
         ])))
     }
 }
-public var openIosNativeAlbum: OpenIosNativeAlbum = {
-(_ callback: @escaping IosNativeAlbumCallback) -> Bool in
-IosNativeAlbumPickerManager.shared = IosNativeAlbumPickerManager()
-return IosNativeAlbumPickerManager.shared!.open(callback)
+public var openNativeAlbum: OpenNativeAlbum = {
+(_ callback: @escaping NativeAlbumCallback) -> Bool in
+NativeAlbumPickerManager.shared = NativeAlbumPickerManager()
+return NativeAlbumPickerManager.shared!.open(callback)
 }
-public func getIosNativeDemoInfoByJs() -> IosNativeDemoInfo {
-    return getIosNativeDemoInfo()
+public func getNativeDemoInfoByJs() -> NativeDemoInfo {
+    return getNativeDemoInfo()
 }
-public func copyIosNativeDemoTextByJs(_ text: String) -> Bool {
-    return copyIosNativeDemoText(text)
+public func copyNativeDemoTextByJs(_ text: String) -> Bool {
+    return copyNativeDemoText(text)
 }
-public func openIosNativeAlbumByJs(_ callback: UTSCallback) -> Bool {
-    return openIosNativeAlbum({
-    (result: IosNativeAlbumResult) -> Void in
+public func openNativeAlbumByJs(_ callback: UTSCallback) -> Bool {
+    return openNativeAlbum({
+    (result: NativeAlbumResult) -> Void in
     callback(result)
     })
 }
-@objc(UTSSDKModulesIosNativeDemoIndexSwift)
+@objc(UTSSDKModulesNativeDemoIndexSwift)
 @objcMembers
-public class UTSSDKModulesIosNativeDemoIndexSwift : NSObject {
-    public static func s_getIosNativeDemoInfoByJs() -> IosNativeDemoInfo {
-        return getIosNativeDemoInfoByJs()
+public class UTSSDKModulesNativeDemoIndexSwift : NSObject {
+    public static func s_getNativeDemoInfoByJs() -> NativeDemoInfo {
+        return getNativeDemoInfoByJs()
     }
-    public static func s_copyIosNativeDemoTextByJs(_ text: String) -> Bool {
-        return copyIosNativeDemoTextByJs(text)
+    public static func s_copyNativeDemoTextByJs(_ text: String) -> Bool {
+        return copyNativeDemoTextByJs(text)
     }
-    public static func s_openIosNativeAlbumByJs(_ callback: UTSCallback) -> Bool {
-        return openIosNativeAlbumByJs(callback)
+    public static func s_openNativeAlbumByJs(_ callback: UTSCallback) -> Bool {
+        return openNativeAlbumByJs(callback)
     }
 }

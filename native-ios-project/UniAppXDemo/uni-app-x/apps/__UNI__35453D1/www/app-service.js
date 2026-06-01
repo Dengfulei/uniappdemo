@@ -12,16 +12,16 @@
   const onNativeBridgeMessage = /* @__PURE__ */ initUTSProxyFunction$1(false, { moduleName: moduleName$1, moduleType: moduleType$1, errMsg: errMsg$1, main: true, package: pkg$1, class: cls$1, name: "onNativeBridgeMessageByJs", keepAlive: false, params: [{ "name": "callback", "type": "UTSCallback" }], return: "" });
   const offNativeBridgeMessage = /* @__PURE__ */ initUTSProxyFunction$1(false, { moduleName: moduleName$1, moduleType: moduleType$1, errMsg: errMsg$1, main: true, package: pkg$1, class: cls$1, name: "offNativeBridgeMessageByJs", keepAlive: false, params: [], return: "" });
   const { registerUTSInterface, initUTSProxyClass, initUTSProxyFunction, initUTSPackageName, initUTSIndexClassName, initUTSClassName } = uni;
-  const name = "iosNativeDemo";
-  const moduleName = "ios-native-demo";
+  const name = "nativeDemo";
+  const moduleName = "native-demo";
   const moduleType = "";
   const errMsg = "";
   const is_uni_modules = true;
   const pkg = /* @__PURE__ */ initUTSPackageName(name, is_uni_modules);
   const cls = /* @__PURE__ */ initUTSIndexClassName(name, is_uni_modules);
-  const getIosNativeDemoInfo = /* @__PURE__ */ initUTSProxyFunction(false, { moduleName, moduleType, errMsg, main: true, package: pkg, class: cls, name: "getIosNativeDemoInfoByJs", keepAlive: false, params: [], return: "" });
-  const copyIosNativeDemoText = /* @__PURE__ */ initUTSProxyFunction(false, { moduleName, moduleType, errMsg, main: true, package: pkg, class: cls, name: "copyIosNativeDemoTextByJs", keepAlive: false, params: [{ "name": "text", "type": "string" }], return: "" });
-  const openIosNativeAlbum = /* @__PURE__ */ initUTSProxyFunction(false, { moduleName, moduleType, errMsg, main: true, package: pkg, class: cls, name: "openIosNativeAlbumByJs", keepAlive: false, params: [{ "name": "callback", "type": "UTSCallback" }], return: "" });
+  const getNativeDemoInfo = /* @__PURE__ */ initUTSProxyFunction(false, { moduleName, moduleType, errMsg, main: true, package: pkg, class: cls, name: "getNativeDemoInfoByJs", keepAlive: false, params: [], return: "" });
+  const copyNativeDemoText = /* @__PURE__ */ initUTSProxyFunction(false, { moduleName, moduleType, errMsg, main: true, package: pkg, class: cls, name: "copyNativeDemoTextByJs", keepAlive: false, params: [{ "name": "text", "type": "string" }], return: "" });
+  const openNativeAlbum = /* @__PURE__ */ initUTSProxyFunction(false, { moduleName, moduleType, errMsg, main: true, package: pkg, class: cls, name: "openNativeAlbumByJs", keepAlive: false, params: [{ "name": "callback", "type": "UTSCallback" }], return: "" });
   class Product extends UTS.UTSType {
     static get$UTSMetadata$() {
       return {
@@ -57,7 +57,7 @@
   const _sfc_main$2 = vue.defineComponent({
     data() {
       return {
-        iosNativeDemoText: "点击按钮读取 iOS 设备信息，并写入系统剪贴板。",
+        nativeDemoText: "点击按钮读取当前平台设备信息，并写入系统剪贴板。",
         products: [
           new Product({
             id: 1,
@@ -153,19 +153,19 @@
         };
         openNativeBridge(options);
       },
-      runIosNativeDemo() {
-        const info = getIosNativeDemoInfo();
+      runNativeDemo() {
+        const info = getNativeDemoInfo();
         const text = "".concat(info.systemName, " ").concat(info.systemVersion, " / ").concat(info.deviceName);
-        const copied = copyIosNativeDemoText("uni-app x 调用 iOS UTS 插件成功：".concat(text));
-        this.iosNativeDemoText = copied ? "已调用 iOS 原生能力：".concat(text) : "已读取设备信息：".concat(text);
+        const copied = copyNativeDemoText("uni-app x 调用 UTS 原生插件成功：".concat(text));
+        this.nativeDemoText = copied ? "已调用 ".concat(info.platform, " 原生能力：").concat(text) : "已读取设备信息：".concat(text);
         uni.showToast({
-          title: copied ? "iOS 插件调用成功" : "已读取设备信息",
+          title: copied ? "原生插件调用成功" : "已读取设备信息",
           icon: "none"
         });
       },
-      openIosAlbumDemo() {
-        const opened = openIosNativeAlbum((result = null) => {
-          this.iosNativeDemoText = "".concat(result.message).concat(result.mediaType != "" ? "：".concat(result.mediaType) : "");
+      openNativeAlbumDemo() {
+        const opened = openNativeAlbum((result = null) => {
+          this.nativeDemoText = "".concat(result.message).concat(result.mediaType != "" ? "：".concat(result.mediaType) : "");
         });
         if (!opened) {
           uni.showToast({
@@ -235,19 +235,19 @@
         ]),
         vue.createElementVNode("view", { class: "native-demo" }, [
           vue.createElementVNode("view", { class: "native-demo-copy" }, [
-            vue.createElementVNode("text", { class: "native-demo-title" }, "iOS UTS 原生插件"),
-            vue.createElementVNode("text", { class: "native-demo-desc" }, vue.toDisplayString($data.iosNativeDemoText), 1)
+            vue.createElementVNode("text", { class: "native-demo-title" }, "UTS 原生插件"),
+            vue.createElementVNode("text", { class: "native-demo-desc" }, vue.toDisplayString($data.nativeDemoText), 1)
           ]),
           vue.createElementVNode("view", { class: "native-demo-actions" }, [
             vue.createElementVNode("button", {
               class: "native-demo-button",
-              onClick: _cache[1] || (_cache[1] = (...args) => $options.runIosNativeDemo && $options.runIosNativeDemo(...args))
+              onClick: _cache[1] || (_cache[1] = (...args) => $options.runNativeDemo && $options.runNativeDemo(...args))
             }, [
               vue.createElementVNode("text", { class: "native-demo-button-text" }, "调用插件")
             ]),
             vue.createElementVNode("button", {
               class: "native-demo-button native-demo-button-secondary",
-              onClick: _cache[2] || (_cache[2] = (...args) => $options.openIosAlbumDemo && $options.openIosAlbumDemo(...args))
+              onClick: _cache[2] || (_cache[2] = (...args) => $options.openNativeAlbumDemo && $options.openNativeAlbumDemo(...args))
             }, [
               vue.createElementVNode("text", { class: "native-demo-button-text" }, "打开相册")
             ])

@@ -1,12 +1,14 @@
 {
-  "id": "ios-native-demo",
-  "displayName": "ios-native-demo",
+  "id": "native-demo",
+  "displayName": "native-demo",
   "version": "1.0.0",
-  "description": "Minimal iOS native UTS plugin demo for uni-app x.",
+  "description": "Minimal native UTS plugin demo for uni-app x on iOS, Android, and HarmonyOS.",
   "keywords": [
     "uni-app-x",
     "uts",
     "ios",
+    "android",
+    "harmony",
     "native"
   ],
   "repository": "",
@@ -53,9 +55,9 @@
             "chrome": "-"
           },
           "app": {
-            "android": "-",
+            "android": "y",
             "ios": "y",
-            "harmony": "-"
+            "harmony": "y"
           },
           "mp": {
             "weixin": "-"

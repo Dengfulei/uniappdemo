@@ -1,0 +1,11 @@
+{
+  "module": {
+    "name": "uni_modules__native_demo",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet",
+      "2in1"
+    ]
+  }
+}

@@ -30,14 +30,14 @@
 
       <view class="native-demo">
         <view class="native-demo-copy">
-          <text class="native-demo-title">iOS UTS 原生插件</text>
-          <text class="native-demo-desc">{{ iosNativeDemoText }}</text>
+          <text class="native-demo-title">UTS 原生插件</text>
+          <text class="native-demo-desc">{{ nativeDemoText }}</text>
         </view>
         <view class="native-demo-actions">
-          <button class="native-demo-button" @click="runIosNativeDemo">
+          <button class="native-demo-button" @click="runNativeDemo">
             <text class="native-demo-button-text">调用插件</text>
           </button>
-          <button class="native-demo-button native-demo-button-secondary" @click="openIosAlbumDemo">
+          <button class="native-demo-button native-demo-button-secondary" @click="openNativeAlbumDemo">
             <text class="native-demo-button-text">打开相册</text>
           </button>
         </view>
@@ -67,7 +67,7 @@
 
 <script>
 import { NativeBridgeMessage, NativeBridgeOptions, offNativeBridgeMessage, onNativeBridgeMessage, openNativeBridge } from '@/uni_modules/native-bridge'
-import { copyIosNativeDemoText, getIosNativeDemoInfo, openIosNativeAlbum } from '@/uni_modules/ios-native-demo'
+import { copyNativeDemoText, getNativeDemoInfo, openNativeAlbum } from '@/uni_modules/native-demo'
 
 type Product = {
   id: number
@@ -83,7 +83,7 @@ type Product = {
 export default {
   data() {
     return {
-      iosNativeDemoText: '点击按钮读取 iOS 设备信息，并写入系统剪贴板。',
+      nativeDemoText: '点击按钮读取当前平台设备信息，并写入系统剪贴板。',
       products: [
         {
           id: 1,
@@ -182,20 +182,20 @@ export default {
 
       openNativeBridge(options)
     },
-    runIosNativeDemo() {
-      const info = getIosNativeDemoInfo()
+    runNativeDemo() {
+      const info = getNativeDemoInfo()
       const text = `${info.systemName} ${info.systemVersion} / ${info.deviceName}`
-      const copied = copyIosNativeDemoText(`uni-app x 调用 iOS UTS 插件成功：${text}`)
+      const copied = copyNativeDemoText(`uni-app x 调用 UTS 原生插件成功：${text}`)
 
-      this.iosNativeDemoText = copied ? `已调用 iOS 原生能力：${text}` : `已读取设备信息：${text}`
+      this.nativeDemoText = copied ? `已调用 ${info.platform} 原生能力：${text}` : `已读取设备信息：${text}`
       uni.showToast({
-        title: copied ? 'iOS 插件调用成功' : '已读取设备信息',
+        title: copied ? '原生插件调用成功' : '已读取设备信息',
         icon: 'none'
       })
     },
-    openIosAlbumDemo() {
-      const opened = openIosNativeAlbum((result) => {
-        this.iosNativeDemoText = `${result.message}${result.mediaType != '' ? `：${result.mediaType}` : ''}`
+    openNativeAlbumDemo() {
+      const opened = openNativeAlbum((result) => {
+        this.nativeDemoText = `${result.message}${result.mediaType != '' ? `：${result.mediaType}` : ''}`
       })
 
       if (!opened) {

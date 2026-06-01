@@ -1,0 +1,22 @@
+export type NativeDemoInfo = {
+  platform : string
+  deviceName : string
+  systemName : string
+  systemVersion : string
+  model : string
+  timestamp : string
+}
+
+export type GetNativeDemoInfo = () => NativeDemoInfo
+
+export type CopyNativeDemoText = (text : string) => boolean
+
+export type NativeAlbumResult = {
+  action : string
+  message : string
+  mediaType : string
+}
+
+export type NativeAlbumCallback = (result : NativeAlbumResult) => void
+
+export type OpenNativeAlbum = (callback : NativeAlbumCallback) => boolean

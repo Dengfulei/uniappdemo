@@ -5,5 +5,8 @@
   "main": "",
   "author": "",
   "license": "",
-  "dependencies": {}
+  "dependencies": {
+    "@uni_modules/native-demo": "../uni_modules/native-demo",
+    "@uni_modules/native-bridge": "../uni_modules/native-bridge"
+  }
 }

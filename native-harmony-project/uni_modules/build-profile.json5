@@ -1,0 +1,12 @@
+{
+  "modules": [
+    {
+      "name": "uni_modules__native_bridge",
+      "srcPath": "./uni_modules/native-bridge"
+    },
+    {
+      "name": "uni_modules__native_demo",
+      "srcPath": "./uni_modules/native-demo"
+    }
+  ]
+}
