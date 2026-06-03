@@ -1,0 +1,146 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2.4 effective-5.10 (swiftlang-6.2.4.1.4 clang-1700.6.4.2)
+// swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -module-name NativeUniModules
+// swift-module-flags-ignorable:  -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.4
+import DCloudUTSFoundation
+import DCloudUniappRuntime
+import Foundation
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@_inheritsConvenienceInitializers @objc(UTSSDKModulesNativeBridgeNativeBridgeOptions) @objcMembers public class NativeBridgeOptions : ObjectiveC.NSObject, DCloudUTSFoundation.UTSObject {
+  @objc public var methodName: Swift.String!
+  @objc public var data: Swift.String!
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public subscript(key: Swift.String) -> Any? {
+    @objc get
+    @objc set
+  }
+  #endif
+  @objc override dynamic public init()
+  @objc public init(_ obj: DCloudUTSFoundation.UTSJSONObject)
+  public typealias Element = Swift.String
+  public typealias Iterator = DCloudUTSFoundation.DCUniIterator
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(UTSSDKModulesNativeBridgeNativeBridgeMessage) @objcMembers public class NativeBridgeMessage : ObjectiveC.NSObject, DCloudUTSFoundation.UTSObject {
+  @objc public var methodName: Swift.String!
+  @objc public var data: Swift.String!
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public subscript(key: Swift.String) -> Any? {
+    @objc get
+    @objc set
+  }
+  #endif
+  @objc override dynamic public init()
+  @objc public init(_ obj: DCloudUTSFoundation.UTSJSONObject)
+  public typealias Element = Swift.String
+  public typealias Iterator = DCloudUTSFoundation.DCUniIterator
+  @objc deinit
+}
+public typealias OpenNativeBridge = (_ options: NativeUniModules.NativeBridgeOptions) -> Swift.Void
+public typealias NativeBridgeMessageCallback = (_ message: NativeUniModules.NativeBridgeMessage) -> Swift.Void
+public typealias OnNativeBridgeMessage = (_ callback: @escaping NativeUniModules.NativeBridgeMessageCallback) -> Swift.Void
+public typealias OffNativeBridgeMessage = () -> Swift.Void
+public var nativeBridgeEventName: Swift.String
+public var uniAppXMessageEventName: Swift.String
+@_inheritsConvenienceInitializers @objc(UTSSDKModulesNativeBridgeNativeBridgeMessageManager) @objcMembers public class NativeBridgeMessageManager : ObjectiveC.NSObject {
+  @objc public static var listener: NativeUniModules.NativeBridgeMessageCallback?
+  @objc public static var messageListener: NativeUniModules.NativeBridgeMessageCallback?
+  @objc public static func open(_ options: NativeUniModules.NativeBridgeOptions)
+  @objc public static func addListener(_ callback: @escaping NativeUniModules.NativeBridgeMessageCallback)
+  @objc public static func removeListener()
+  @objc public static func addMessageListener(_ callback: @escaping NativeUniModules.NativeBridgeMessageCallback)
+  @objc public static func removeMessageListener()
+  @objc public static func handleReceiveBridgeMessage(_ notification: Foundation.Notification)
+  @objc public static func handleReceiveMessage(_ notification: Foundation.Notification)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public static func message(_ notification: Foundation.Notification) -> NativeUniModules.NativeBridgeMessage?
+  #endif
+  @objc override dynamic public init()
+  @objc deinit
+}
+public var openNativeBridge: (_ options: NativeUniModules.NativeBridgeOptions) -> Swift.Void
+public var onNativeBridgeMessage: (_ callback: @escaping NativeUniModules.NativeBridgeMessageCallback) -> Swift.Void
+public var offNativeBridgeMessage: () -> Swift.Void
+@_inheritsConvenienceInitializers @objc(UTSSDKModulesNativeBridgeNativeBridgeOptionsJSONObject) @objcMembers public class NativeBridgeOptionsJSONObject : ObjectiveC.NSObject {
+  @objc public var methodName: Swift.String!
+  @objc public var data: Swift.String!
+  @objc override dynamic public init()
+  @objc deinit
+}
+public func openNativeBridgeByJs(_ options: NativeUniModules.NativeBridgeOptionsJSONObject)
+public func onNativeBridgeMessageByJs(_ callback: DCloudUTSFoundation.UTSCallback)
+public func offNativeBridgeMessageByJs()
+@_inheritsConvenienceInitializers @objc(UTSSDKModulesNativeBridgeIndexSwift) @objcMembers public class UTSSDKModulesNativeBridgeIndexSwift : ObjectiveC.NSObject {
+  @objc public static func s_openNativeBridgeByJs(_ options: NativeUniModules.NativeBridgeOptionsJSONObject)
+  @objc public static func s_onNativeBridgeMessageByJs(_ callback: DCloudUTSFoundation.UTSCallback)
+  @objc public static func s_offNativeBridgeMessageByJs()
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(UTSSDKModulesNativeDemoNativeDemoInfo) @objcMembers public class NativeDemoInfo : ObjectiveC.NSObject, DCloudUTSFoundation.UTSObject {
+  @objc public var platform: Swift.String!
+  @objc public var deviceName: Swift.String!
+  @objc public var systemName: Swift.String!
+  @objc public var systemVersion: Swift.String!
+  @objc public var model: Swift.String!
+  @objc public var timestamp: Swift.String!
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public subscript(key: Swift.String) -> Any? {
+    @objc get
+    @objc set
+  }
+  #endif
+  @objc override dynamic public init()
+  @objc public init(_ obj: DCloudUTSFoundation.UTSJSONObject)
+  public typealias Element = Swift.String
+  public typealias Iterator = DCloudUTSFoundation.DCUniIterator
+  @objc deinit
+}
+public typealias GetNativeDemoInfo = () -> NativeUniModules.NativeDemoInfo
+public typealias CopyNativeDemoText = (_ text: Swift.String) -> Swift.Bool
+@_inheritsConvenienceInitializers @objc(UTSSDKModulesNativeDemoNativeAlbumResult) @objcMembers public class NativeAlbumResult : ObjectiveC.NSObject, DCloudUTSFoundation.UTSObject {
+  @objc public var action: Swift.String!
+  @objc public var message: Swift.String!
+  @objc public var mediaType: Swift.String!
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public subscript(key: Swift.String) -> Any? {
+    @objc get
+    @objc set
+  }
+  #endif
+  @objc override dynamic public init()
+  @objc public init(_ obj: DCloudUTSFoundation.UTSJSONObject)
+  public typealias Element = Swift.String
+  public typealias Iterator = DCloudUTSFoundation.DCUniIterator
+  @objc deinit
+}
+public typealias NativeAlbumCallback = (_ result: NativeUniModules.NativeAlbumResult) -> Swift.Void
+public typealias OpenNativeAlbum = (_ callback: @escaping NativeUniModules.NativeAlbumCallback) -> Swift.Bool
+public var getNativeDemoInfo: () -> NativeUniModules.NativeDemoInfo
+public var copyNativeDemoText: (_ text: Swift.String) -> Swift.Bool
+@_inheritsConvenienceInitializers @objc(UTSSDKModulesNativeDemoNativeAlbumPickerManager) @objcMembers @_Concurrency.MainActor @preconcurrency public class NativeAlbumPickerManager : ObjectiveC.NSObject, UIKit.UIImagePickerControllerDelegate, UIKit.UINavigationControllerDelegate {
+  @objc @_Concurrency.MainActor @preconcurrency public static var shared: NativeUniModules.NativeAlbumPickerManager?
+  @objc @_Concurrency.MainActor @preconcurrency public var callback: NativeUniModules.NativeAlbumCallback?
+  @objc @_Concurrency.MainActor @preconcurrency public func open(_ callback: @escaping NativeUniModules.NativeAlbumCallback) -> Swift.Bool
+  @objc @_Concurrency.MainActor @preconcurrency public func dismiss(_ picker: UIKit.UIImagePickerController)
+  @_Concurrency.MainActor @preconcurrency @objc public func imagePickerController(_ param1: UIKit.UIImagePickerController, didFinishPickingMediaWithInfo info: Swift.Dictionary<UIKit.UIImagePickerController.InfoKey, Any>)
+  @_Concurrency.MainActor @preconcurrency @objc public func imagePickerControllerDidCancel(_ param1: UIKit.UIImagePickerController)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init()
+  @objc deinit
+}
+public var openNativeAlbum: (_ callback: @escaping NativeUniModules.NativeAlbumCallback) -> Swift.Bool
+public func getNativeDemoInfoByJs() -> NativeUniModules.NativeDemoInfo
+public func copyNativeDemoTextByJs(_ text: Swift.String) -> Swift.Bool
+public func openNativeAlbumByJs(_ callback: DCloudUTSFoundation.UTSCallback) -> Swift.Bool
+@_inheritsConvenienceInitializers @objc(UTSSDKModulesNativeDemoIndexSwift) @objcMembers public class UTSSDKModulesNativeDemoIndexSwift : ObjectiveC.NSObject {
+  @objc public static func s_getNativeDemoInfoByJs() -> NativeUniModules.NativeDemoInfo
+  @objc public static func s_copyNativeDemoTextByJs(_ text: Swift.String) -> Swift.Bool
+  @objc public static func s_openNativeAlbumByJs(_ callback: DCloudUTSFoundation.UTSCallback) -> Swift.Bool
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension NativeUniModules.NativeAlbumPickerManager : Swift.Sendable {}

@@ -63,43 +63,70 @@ public typealias OnNativeBridgeMessage = (_ callback: @escaping NativeBridgeMess
 public typealias OffNativeBridgeMessage = () -> Void
 public var nativeBridgeEventName = "UniAppXNativeBridge"
 public var uniAppXMessageEventName = "UniAppXNativeMessage"
-public var openNativeBridge: OpenNativeBridge = {
-(_ options: NativeBridgeOptions) -> Void in
-if (options.methodName == "") {
-    console.log("""
-native-bridge ignored empty methodName
-""")
-    return
-}
-var notificationName = Notification.Name(nativeBridgeEventName)
-var userInfo = Map<String, Any>()
-userInfo.set("methodName", options.methodName!)
-userInfo.set("data", options.data!)
-NotificationCenter.default.post(name: notificationName, object: nil, userInfo: userInfo)
-}
 @objc(UTSSDKModulesNativeBridgeNativeBridgeMessageManager)
 @objcMembers
 public class NativeBridgeMessageManager : NSObject {
     public static var listener: NativeBridgeMessageCallback? = nil
+    public static var messageListener: NativeBridgeMessageCallback? = nil
+    public static func `open`(_ options: NativeBridgeOptions) {
+        if (options.methodName == "") {
+            console.log("""
+native-bridge ignored empty methodName
+""")
+            return
+        }
+        var notificationName = Notification.Name(nativeBridgeEventName)
+        var userInfo = Map<String, Any>()
+        userInfo.set("methodName", options.methodName!)
+        userInfo.set("data", options.data!)
+        NotificationCenter.default.post(name: notificationName, object: nil, userInfo: userInfo)
+    }
     public static func addListener(_ callback: @escaping NativeBridgeMessageCallback) {
         self.listener = callback
+        var notificationName = Notification.Name(nativeBridgeEventName)
+        var method = Selector("handleReceiveBridgeMessage:")
+        NotificationCenter.default.removeObserver(self, name: notificationName, object: nil)
+        NotificationCenter.default.addObserver(self, selector: method, name: notificationName, object: nil)
+    }
+    public static func removeListener() {
+        var notificationName = Notification.Name(nativeBridgeEventName)
+        NotificationCenter.default.removeObserver(self, name: notificationName, object: nil)
+        self.listener = nil
+    }
+    public static func addMessageListener(_ callback: @escaping NativeBridgeMessageCallback) {
+        self.messageListener = callback
         var notificationName = Notification.Name(uniAppXMessageEventName)
         var method = Selector("handleReceiveMessage:")
         NotificationCenter.default.removeObserver(self, name: notificationName, object: nil)
         NotificationCenter.default.addObserver(self, selector: method, name: notificationName, object: nil)
     }
-    public static func removeListener() {
+    public static func removeMessageListener() {
         var notificationName = Notification.Name(uniAppXMessageEventName)
         NotificationCenter.default.removeObserver(self, name: notificationName, object: nil)
-        self.listener = nil
+        self.messageListener = nil
+    }
+    @objc
+    public static func handleReceiveBridgeMessage(_ notification: Notification) {
+        var message = self.message(notification)
+        if (message == nil) {
+            return
+        }
+        self.listener?(message!)
     }
     @objc
     public static func handleReceiveMessage(_ notification: Notification) {
-        var userInfo = notification.userInfo
-        if (userInfo == nil) {
+        var message = self.message(notification)
+        if (message == nil) {
             return
         }
-        var message = NativeBridgeMessage(UTSJSONObject([
+        self.messageListener?(message!)
+    }
+    public static func message(_ notification: Notification) -> NativeBridgeMessage? {
+        var userInfo = notification.userInfo
+        if (userInfo == nil) {
+            return nil
+        }
+        return NativeBridgeMessage(UTSJSONObject([
             "methodName": """
 \(userInfo!["methodName"] ?? "")
 """,
@@ -107,16 +134,19 @@ public class NativeBridgeMessageManager : NSObject {
 \(userInfo!["data"] ?? "")
 """
         ]))
-        self.listener?(message)
     }
+}
+public var openNativeBridge: OpenNativeBridge = {
+(_ options: NativeBridgeOptions) -> Void in
+NativeBridgeMessageManager.open(options)
 }
 public var onNativeBridgeMessage: OnNativeBridgeMessage = {
 (_ callback: @escaping NativeBridgeMessageCallback) -> Void in
-NativeBridgeMessageManager.addListener(callback)
+NativeBridgeMessageManager.addMessageListener(callback)
 }
 public var offNativeBridgeMessage: OffNativeBridgeMessage = {
 () -> Void in
-NativeBridgeMessageManager.removeListener()
+NativeBridgeMessageManager.removeMessageListener()
 }
 @objc(UTSSDKModulesNativeBridgeNativeBridgeOptionsJSONObject)
 @objcMembers

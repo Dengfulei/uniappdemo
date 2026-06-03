@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 final class ProductDetailViewController: UIViewController, UIGestureRecognizerDelegate {
 
@@ -15,7 +16,9 @@ final class ProductDetailViewController: UIViewController, UIGestureRecognizerDe
     }
 
     private let product: [String: Any]
+    private let nativeNavigationBar = NativeNavigationBar()
     private weak var previousPopGestureDelegate: UIGestureRecognizerDelegate?
+    private var previousNavigationBarHidden: Bool?
     private var disabledNavigationGestureStates: [(gesture: UIGestureRecognizer, isEnabled: Bool)] = []
 
     init(product: [String: Any]) {
@@ -32,7 +35,18 @@ final class ProductDetailViewController: UIViewController, UIGestureRecognizerDe
         super.viewDidLoad()
         view.backgroundColor = .white
         title = textValue("name", defaultValue: "商品详情")
+        configureNavigation()
         buildView()
+    }
+
+
+
+    private func configureNavigation() {
+        nativeNavigationBar.updateTitle(textValue("name", defaultValue: "商品详情"))
+        nativeNavigationBar.backgroundColor = UIColor.red
+        nativeNavigationBar.onBack = { [weak self] in
+            self?.closePage()
+        }
     }
 
     private func buildView() {
@@ -118,6 +132,7 @@ final class ProductDetailViewController: UIViewController, UIGestureRecognizerDe
         descStack.spacing = 12
 
         view.addSubview(scrollView)
+        view.addSubview(nativeNavigationBar)
         scrollView.addSubview(contentView)
         contentView.addSubview(iconView)
         contentView.addSubview(headerStack)
@@ -125,10 +140,15 @@ final class ProductDetailViewController: UIViewController, UIGestureRecognizerDe
         contentView.addSubview(descStack)
 
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.topAnchor.constraint(equalTo: nativeNavigationBar.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
+            nativeNavigationBar.topAnchor.constraint(equalTo: view.topAnchor),
+            nativeNavigationBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            nativeNavigationBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            nativeNavigationBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 44),
 
             contentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
             contentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),

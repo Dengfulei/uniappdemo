@@ -1,0 +1,16 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2.4 effective-5.10 (swiftlang-6.2.4.1.4 clang-1700.6.4.2)
+// swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -module-name NativeTestPlugin
+// swift-module-flags-ignorable:  -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.4
+import Foundation
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@objc @_inheritsConvenienceInitializers @objcMembers final public class NativeTestPluginBridge : ObjectiveC.NSObject {
+  @objc public static let pluginVersion: Swift.String
+  @objc public static func ping() -> Swift.String
+  @objc public static func info() -> [Swift.String : Swift.String]
+  @objc override dynamic public init()
+  @objc deinit
+}

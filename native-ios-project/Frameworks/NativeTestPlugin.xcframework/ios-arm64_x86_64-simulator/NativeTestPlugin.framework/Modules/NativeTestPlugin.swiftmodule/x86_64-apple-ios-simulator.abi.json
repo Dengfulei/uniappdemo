@@ -1,0 +1,254 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "NativeTestPlugin",
+    "printedName": "NativeTestPlugin",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "NativeTestPlugin"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "NativeTestPluginBridge",
+        "printedName": "NativeTestPluginBridge",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "pluginVersion",
+            "printedName": "pluginVersion",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@NativeTestPlugin@objc(cs)NativeTestPluginBridge(cpy)pluginVersion",
+            "mangledName": "$s16NativeTestPlugin0abC6BridgeC13pluginVersionSSvpZ",
+            "moduleName": "NativeTestPlugin",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@NativeTestPlugin@objc(cs)NativeTestPluginBridge(cm)pluginVersion",
+                "mangledName": "$s16NativeTestPlugin0abC6BridgeC13pluginVersionSSvgZ",
+                "moduleName": "NativeTestPlugin",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "ping",
+            "printedName": "ping()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@NativeTestPlugin@objc(cs)NativeTestPluginBridge(cm)ping",
+            "mangledName": "$s16NativeTestPlugin0abC6BridgeC4pingSSyFZ",
+            "moduleName": "NativeTestPlugin",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "info",
+            "printedName": "info()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Dictionary",
+                "printedName": "[Swift.String : Swift.String]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:SD"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@NativeTestPlugin@objc(cs)NativeTestPluginBridge(cm)info",
+            "mangledName": "$s16NativeTestPlugin0abC6BridgeC4infoSDyS2SGyFZ",
+            "moduleName": "NativeTestPlugin",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "NativeTestPluginBridge",
+                "printedName": "NativeTestPlugin.NativeTestPluginBridge",
+                "usr": "c:@M@NativeTestPlugin@objc(cs)NativeTestPluginBridge"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@NativeTestPlugin@objc(cs)NativeTestPluginBridge(im)init",
+            "mangledName": "$s16NativeTestPlugin0abC6BridgeCACycfc",
+            "moduleName": "NativeTestPlugin",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@NativeTestPlugin@objc(cs)NativeTestPluginBridge",
+        "mangledName": "$s16NativeTestPlugin0abC6BridgeC",
+        "moduleName": "NativeTestPlugin",
+        "declAttributes": [
+          "Final",
+          "AccessControl",
+          "ObjCMembers",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/dengfulei\/Desktop\/codex-ai\/uniappdemo\/native-ios-project\/NativeTestPlugin\/Sources\/NativeTestPlugin\/NativeTestPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 124,
+      "length": 7,
+      "value": "\"1.0.0\""
+    }
+  ]
+}

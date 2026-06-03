@@ -1,0 +1,5 @@
+framework module NativeUniModules {
+  umbrella header "NativeUniModules.h"
+  export *
+  module * { export * }
+}

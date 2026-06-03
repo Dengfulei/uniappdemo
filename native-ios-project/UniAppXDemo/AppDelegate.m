@@ -18,7 +18,7 @@
     UIViewController *rootViewController = [[UIViewController alloc] init];
     rootViewController.view.backgroundColor = UIColor.whiteColor;
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
-//    navigationController.navigationBarHidden = YES;
+    navigationController.navigationBarHidden = YES;
 
     // 2. 创建主窗口。这里不再进入原生 Demo 测试页，启动后直接进入 uni-app-x。
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];

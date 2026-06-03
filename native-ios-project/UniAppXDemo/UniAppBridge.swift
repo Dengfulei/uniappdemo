@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 import DCloudUniappRuntime
-
+import NativeTestPlugin
 @objc
 @objcMembers
 public class UniAppBridge : NSObject {
@@ -17,13 +17,13 @@ public class UniAppBridge : NSObject {
         static let productDetail = "productDetail"
     }
 
-    private static let nativeBridgeNotification = Notification.Name("UniAppXNativeBridge")
     private static weak var rootViewController: UIViewController?
-    private static var hasInstalledNativeBridgeObserver = false
+    private static var hasInstalledNativeBridgeListener = false
 
     // 1. AppDelegate 启动后先初始化 uni-app-x SDK，并转发生命周期启动事件。
     public static func applicationDidFinishLaunchingWithOptions(_ application: UIApplication?, _ launchOptions: [UIApplication.LaunchOptionsKey : Any]? ) {
         UniAppXSDK.initSDK()
+        print("NativeTestPlugin check: \(NativeTestPluginBridge.ping())")
         UniAppXSDK.applicationDidFinishLaunchingWithOptions(application, launchOptions)
     }
 
@@ -68,7 +68,7 @@ public class UniAppBridge : NSObject {
     // 3. SDK 初始化完成后，使用根控制器承载并启动 uni-app-x 页面。
     public static func startUniAppX(rootViewController: UIViewController) {
         self.rootViewController = rootViewController
-        installNativeBridgeObserverIfNeeded()
+        installNativeBridgeListenerIfNeeded()
 
         let options = UniAppXSDKStartOptions()
         options.openType = .push
@@ -81,29 +81,25 @@ public class UniAppBridge : NSObject {
     }
 
     // 4. uni-app-x 通过 UTS native-bridge 发送通用事件，原生工程按 methodName 分发页面或能力。
-    private static func installNativeBridgeObserverIfNeeded() {
-        guard !hasInstalledNativeBridgeObserver else {
+    private static func installNativeBridgeListenerIfNeeded() {
+        guard !hasInstalledNativeBridgeListener else {
             return
         }
 
-        hasInstalledNativeBridgeObserver = true
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(handleNativeBridgeEvent(_:)),
-            name: nativeBridgeNotification,
-            object: nil
-        )
+        hasInstalledNativeBridgeListener = true
+        NativeBridgeMessageManager.addListener { message in
+            handleNativeBridgeMessage(methodName: message.methodName, data: message.data)
+        }
     }
 
-    @objc private static func handleNativeBridgeEvent(_ notification: Notification) {
-        guard let userInfo = notification.userInfo,
-              let methodName = userInfo["methodName"] as? String else {
+    private static func handleNativeBridgeMessage(methodName: String?, data: Any?) {
+        guard let methodName = methodName else {
             return
         }
 
         switch methodName {
         case NativeBridgeMethod.productDetail:
-            let product = productPayload(from: userInfo["data"])
+            let product = productPayload(from: data)
             showProductDetail(product)
         default:
             print("UniAppX native bridge ignored methodName: \(methodName)")

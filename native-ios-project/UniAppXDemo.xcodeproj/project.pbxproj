@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5770A7B6CCC2D8BABB1A2EB8 /* native-bridge-index.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C788009185A1DDC7829283 /* native-bridge-index.swift */; };
+		69A3966372E51832E27A59E8 /* native-demo-index.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBDC9BADEA3D132E98F2DFF /* native-demo-index.swift */; };
 		930BFEBA2CE48A12006333FB /* DCloudDebugServe.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 930BFEB92CE48A11006333FB /* DCloudDebugServe.xcframework */; };
 		9338345B2C3B9DAA00C4DE06 /* DCloudPermissionCamera.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 933834552C3B9DAA00C4DE06 /* DCloudPermissionCamera.xcframework */; };
 		9338345C2C3B9DAA00C4DE06 /* DCloudPermissionMicrophone.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 933834562C3B9DAA00C4DE06 /* DCloudPermissionMicrophone.xcframework */; };
@@ -45,8 +47,7 @@
 		937659862C2D608600D52792 /* UniAppBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937659852C2D608600D52792 /* UniAppBridge.swift */; };
 		937659882C2D60A900D52792 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 937659872C2D60A900D52792 /* PrivacyInfo.xcprivacy */; };
 		9376598C2FCB9E3B00D52792 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9376598B2FCB9E3B00D52792 /* ProductDetailViewController.swift */; };
-		937659902FC972C900D52792 /* native-bridge-index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9376598F2FC972C900D52792 /* native-bridge-index.swift */; };
-		937659922FC972C900D52792 /* native-demo-index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937659912FC972C900D52792 /* native-demo-index.swift */; };
+		937659942FCF4BB500D52792 /* NativeNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937659932FCF4BB500D52792 /* NativeNavigationBar.swift */; };
 		937659972C2D623D00D52792 /* DCloudUTSFoundation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9376598A2C2D623400D52792 /* DCloudUTSFoundation.xcframework */; };
 		937659982C2D623D00D52792 /* DCloudUTSFoundation.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9376598A2C2D623400D52792 /* DCloudUTSFoundation.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		937659F42C2D7A7900D52792 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 937659F32C2D7A7900D52792 /* libc++.tbd */; };
@@ -76,6 +77,8 @@
 		B6A0F5082F30BFED00A6E3CE /* HappyDNS.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B6A0F5042F30BFED00A6E3CE /* HappyDNS.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B6A0F50A2F30C01000A6E3CE /* qplayer2_core.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6A0F5092F30C01000A6E3CE /* qplayer2_core.xcframework */; };
 		B6A0F50B2F30C01100A6E3CE /* qplayer2_core.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B6A0F5092F30C01000A6E3CE /* qplayer2_core.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BCC486B026F3A7C4669E538E /* NativeTestPlugin.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF87034F7206EE538F4EA2B /* NativeTestPlugin.xcframework */; };
+		CD20DF537656421594AABD30 /* NativeTestPlugin.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DBF87034F7206EE538F4EA2B /* NativeTestPlugin.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -98,6 +101,7 @@
 				B6A0F50B2F30C01100A6E3CE /* qplayer2_core.xcframework in Embed Frameworks */,
 				B6A0F5082F30BFED00A6E3CE /* HappyDNS.xcframework in Embed Frameworks */,
 				93F3D17B2D549AA000151A59 /* CocoaAsyncSocket.xcframework in Embed Frameworks */,
+				CD20DF537656421594AABD30 /* NativeTestPlugin.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -146,10 +150,9 @@
 		937659842C2D608600D52792 /* UniAppXDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UniAppXDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		937659852C2D608600D52792 /* UniAppBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniAppBridge.swift; sourceTree = "<group>"; };
 		937659872C2D60A900D52792 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		9376598B2FCB9E3B00D52792 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
-		9376598F2FC972C900D52792 /* native-bridge-index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "native-bridge-index.swift"; path = "uni-app-x/uni_modules/native-bridge/utssdk/app-ios/src/index.swift"; sourceTree = "<group>"; };
-		937659912FC972C900D52792 /* native-demo-index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "native-demo-index.swift"; path = "uni-app-x/uni_modules/native-demo/utssdk/app-ios/src/native-demo-index.swift"; sourceTree = "<group>"; };
 		9376598A2C2D623400D52792 /* DCloudUTSFoundation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = DCloudUTSFoundation.xcframework; path = SDK/Libs/DCloudUTSFoundation.xcframework; sourceTree = "<group>"; };
+		9376598B2FCB9E3B00D52792 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
+		937659932FCF4BB500D52792 /* NativeNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeNavigationBar.swift; sourceTree = "<group>"; };
 		937659F32C2D7A7900D52792 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		937659F52C2D7A7E00D52792 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		937BFD552E7E8DF0005019C5 /* SDWebImage.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:YQM5H857L5:Digital Heaven (Beijing) Internet & Technology Co., Ltd."; lastKnownFileType = wrapper.xcframework; name = SDWebImage.xcframework; path = SDK/Libs/SDWebImage.xcframework; sourceTree = "<group>"; };
@@ -167,6 +170,9 @@
 		B6A0F5032F30BFED00A6E3CE /* PLMediaStreamingKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = PLMediaStreamingKit.xcframework; path = SDK/Libs/PLMediaStreamingKit.xcframework; sourceTree = "<group>"; };
 		B6A0F5042F30BFED00A6E3CE /* HappyDNS.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = HappyDNS.xcframework; path = SDK/Libs/HappyDNS.xcframework; sourceTree = "<group>"; };
 		B6A0F5092F30C01000A6E3CE /* qplayer2_core.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = qplayer2_core.xcframework; path = SDK/Libs/qplayer2_core.xcframework; sourceTree = "<group>"; };
+		CEBDC9BADEA3D132E98F2DFF /* native-demo-index.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "native-demo-index.swift"; path = "uni-app-x/uni_modules/native-demo/utssdk/app-ios/src/native-demo-index.swift"; sourceTree = "<group>"; };
+		D5C788009185A1DDC7829283 /* native-bridge-index.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "native-bridge-index.swift"; path = "uni-app-x/uni_modules/native-bridge/utssdk/app-ios/src/index.swift"; sourceTree = "<group>"; };
+		DBF87034F7206EE538F4EA2B /* NativeTestPlugin.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; name = NativeTestPlugin.xcframework; path = Frameworks/NativeTestPlugin.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +214,7 @@
 				933834772C3B9EB000C4DE06 /* DCUniAdFoundation.xcframework in Frameworks */,
 				933834802C3B9EE900C4DE06 /* CoreLocation.framework in Frameworks */,
 				933834842C3B9EF300C4DE06 /* SystemConfiguration.framework in Frameworks */,
+				BCC486B026F3A7C4669E538E /* NativeTestPlugin.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,10 +263,11 @@
 				9376597A2C2D602300D52792 /* Info.plist */,
 				9376597B2C2D602300D52792 /* main.m */,
 				937659852C2D608600D52792 /* UniAppBridge.swift */,
+				937659932FCF4BB500D52792 /* NativeNavigationBar.swift */,
 				9376598B2FCB9E3B00D52792 /* ProductDetailViewController.swift */,
-				9376598F2FC972C900D52792 /* native-bridge-index.swift */,
-				937659912FC972C900D52792 /* native-demo-index.swift */,
 				937659842C2D608600D52792 /* UniAppXDemo-Bridging-Header.h */,
+				D5C788009185A1DDC7829283 /* native-bridge-index.swift */,
+				CEBDC9BADEA3D132E98F2DFF /* native-demo-index.swift */,
 			);
 			path = UniAppXDemo;
 			sourceTree = "<group>";
@@ -302,6 +310,7 @@
 				937659F52C2D7A7E00D52792 /* JavaScriptCore.framework */,
 				937659F32C2D7A7900D52792 /* libc++.tbd */,
 				9376598A2C2D623400D52792 /* DCloudUTSFoundation.xcframework */,
+				DBF87034F7206EE538F4EA2B /* NativeTestPlugin.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -394,9 +403,10 @@
 				9376596B2C2D602200D52792 /* AppDelegate.m in Sources */,
 				9376597C2C2D602300D52792 /* main.m in Sources */,
 				937659862C2D608600D52792 /* UniAppBridge.swift in Sources */,
+				937659942FCF4BB500D52792 /* NativeNavigationBar.swift in Sources */,
 				9376598C2FCB9E3B00D52792 /* ProductDetailViewController.swift in Sources */,
-				937659902FC972C900D52792 /* native-bridge-index.swift in Sources */,
-				937659922FC972C900D52792 /* native-demo-index.swift in Sources */,
+				5770A7B6CCC2D8BABB1A2EB8 /* native-bridge-index.swift in Sources */,
+				69A3966372E51832E27A59E8 /* native-demo-index.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
