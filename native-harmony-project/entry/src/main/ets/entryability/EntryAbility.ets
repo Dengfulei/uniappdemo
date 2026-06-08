@@ -19,12 +19,6 @@ export default class EntryAbility extends UniEntryAbility {
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    super.onWindowStageCreate(windowStage, false);
-
-    windowStage.loadContent('pages/Index', (err) => {
-      if (err.code) {
-        return;
-      }
-    });
+    super.onWindowStageCreate(windowStage, true);
   }
 }
