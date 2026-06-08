@@ -1,0 +1,45 @@
+plugins {
+    id "com.android.application"
+    id "org.jetbrains.kotlin.android"
+}
+
+android {
+    namespace "com.dcloud.uniappdemo"
+    compileSdk 35
+
+    buildFeatures {
+        buildConfig true
+    }
+
+    defaultConfig {
+        applicationId "com.dcloud.uniappdemo"
+        minSdk 21
+        targetSdk 35
+        versionCode 100
+        versionName "1.0.0"
+
+        buildConfigField "String", "UTSRegisterComponents", "\"[]\""
+        buildConfigField "String[]", "UTSHooksClassArray", "{}"
+    }
+
+    aaptOptions {
+        additionalParameters "--auto-add-overlay"
+        ignoreAssetsPattern "!.svn:!.git:.*:!CVS:!thumbs.db:!picasa.ini:!*.scc:*~"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+dependencies {
+    implementation project(":uniappx")
+    implementation project(":native-bridge")
+    implementation project(":native-demo")
+    implementation fileTree(include: ["*.aar"], dir: "../uniappx/libs")
+}
