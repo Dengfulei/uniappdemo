@@ -2,7 +2,7 @@
 
     <application>
         <activity
-            android:name=".NativeAlbumProxyActivity"
+            android:name="uts.sdk.modules.nativeDemo.NativeAlbumProxyActivity"
             android:exported="false"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
     </application>
