@@ -101,7 +101,7 @@
           }),
           new Product({
             id: 5,
-            name: "亚麻收纳篮",
+            name: "亚麻收纳篮--亚麻收纳篮-/亚麻收纳篮亚麻收纳篮亚麻收纳篮亚麻收纳篮亚麻收纳篮亚麻收纳篮",
             price: "45.00",
             desc: "柔软布面和硬挺边缘，适合桌面小物整理。",
             tag: "家居",
@@ -192,7 +192,7 @@
       }
     }
   });
-  const _style_0$1 = { "page-scroll": { "": { "flexGrow": 1, "flexShrink": 1, "flexBasis": "0%", "height": "100%", "backgroundColor": "#f6f1e8" } }, "page-content": { "": { "paddingTop": 24, "paddingRight": 18, "paddingBottom": 34, "paddingLeft": 18 } }, "topbar": { "": { "flexDirection": "row", "alignItems": "center", "justifyContent": "space-between", "marginBottom": 18 } }, "eyebrow": { "": { "color": "#89704d", "fontSize": 11, "fontWeight": "700", "letterSpacing": 0 } }, "title": { "": { "marginTop": 4, "color": "#20302d", "fontSize": 30, "fontWeight": "700" } }, "login-button": { "": { "width": 74, "height": 38, "borderTopLeftRadius": 19, "borderTopRightRadius": 19, "borderBottomRightRadius": 19, "borderBottomLeftRadius": 19, "backgroundColor": "#20302d", "alignItems": "center", "justifyContent": "center" } }, "login-text": { "": { "color": "#f8f0df", "fontSize": 14, "fontWeight": "700" } }, "hero": { "": { "paddingTop": 20, "paddingRight": 20, "paddingBottom": 20, "paddingLeft": 20, "borderTopLeftRadius": 8, "borderTopRightRadius": 8, "borderBottomRightRadius": 8, "borderBottomLeftRadius": 8, "backgroundColor": "#20302d", "flexDirection": "row", "justifyContent": "space-between", "overflow": "hidden" } }, "hero-copy": { "": { "flexGrow": 1, "flexShrink": 1, "flexBasis": "0%" } }, "hero-kicker": { "": { "color": "#e6b866", "fontSize": 13, "fontWeight": "700" } }, "hero-title": { "": { "marginTop": 10, "color": "#fff8ec", "fontSize": 25, "lineHeight": "34px", "fontWeight": "700" } }, "hero-desc": { "": { "marginTop": 10, "color": "#bfd0c8", "fontSize": 13, "lineHeight": "20px" } }, "hero-badge": { "": { "width": 72, "height": 92, "borderTopLeftRadius": 8, "borderTopRightRadius": 8, "borderBottomRightRadius": 8, "borderBottomLeftRadius": 8, "backgroundColor": "#e6b866", "alignItems": "center", "justifyContent": "center" } }, "badge-value": { "": { "color": "#20302d", "fontSize": 34, "fontWeight": "700" } }, "badge-label": { "": { "color": "#20302d", "fontSize": 12, "fontWeight": "700" } }, "section-head": { "": { "marginTop": 26, "marginBottom": 12, "flexDirection": "row", "alignItems": "flex-end", "justifyContent": "space-between" } }, "section-title": { "": { "color": "#20302d", "fontSize": 20, "fontWeight": "700" } }, "section-note": { "": { "color": "#8a7a61", "fontSize": 12 } }, "native-demo": { "": { "marginBottom": 14, "paddingTop": 14, "paddingRight": 14, "paddingBottom": 14, "paddingLeft": 14, "borderTopLeftRadius": 8, "borderTopRightRadius": 8, "borderBottomRightRadius": 8, "borderBottomLeftRadius": 8, "backgroundColor": "#fffaf1", "flexDirection": "row", "alignItems": "center", "justifyContent": "space-between", "boxShadow": "0 8px 18px rgba(36, 45, 41, 0.08)" } }, "native-demo-copy": { "": { "flexGrow": 1, "flexShrink": 1, "flexBasis": "0%", "paddingRight": 12 } }, "native-demo-actions": { "": { "width": 96 } }, "native-demo-title": { "": { "color": "#20302d", "fontSize": 16, "fontWeight": "700" } }, "native-demo-desc": { "": { "marginTop": 6, "color": "#70634e", "fontSize": 12, "lineHeight": "18px" } }, "native-demo-button": { "": { "width": 92, "height": 38, "borderTopLeftRadius": 8, "borderTopRightRadius": 8, "borderBottomRightRadius": 8, "borderBottomLeftRadius": 8, "backgroundColor": "#c46141", "alignItems": "center", "justifyContent": "center" } }, "native-demo-button-secondary": { "": { "marginTop": 8, "backgroundColor": "#20302d" } }, "native-demo-button-text": { "": { "color": "#fffaf1", "fontSize": 13, "fontWeight": "700" } }, "product-card": { "": { "marginBottom": 12, "paddingTop": 12, "paddingRight": 12, "paddingBottom": 12, "paddingLeft": 12, "borderTopLeftRadius": 8, "borderTopRightRadius": 8, "borderBottomRightRadius": 8, "borderBottomLeftRadius": 8, "backgroundColor": "#fffaf1", "flexDirection": "row", "boxShadow": "0 8px 18px rgba(36, 45, 41, 0.08)" } }, "product-art": { "": { "width": 76, "height": 86, "borderTopLeftRadius": 8, "borderTopRightRadius": 8, "borderBottomRightRadius": 8, "borderBottomLeftRadius": 8, "alignItems": "center", "justifyContent": "center" } }, "product-emoji": { "": { "color": "#fffaf1", "fontSize": 30, "fontWeight": "700" } }, "product-info": { "": { "flexGrow": 1, "flexShrink": 1, "flexBasis": "0%", "marginLeft": 12, "justifyContent": "space-between" } }, "product-row": { "": { "flexDirection": "row", "alignItems": "flex-start" } }, "product-name": { "": { "width": 136, "color": "#20302d", "fontSize": 16, "fontWeight": "700", "flexShrink": 1, "lines": 1, "textOverflow": "ellipsis" } }, "product-price": { "": { "color": "#c46141", "fontSize": 16, "fontWeight": "700" } }, "product-desc": { "": { "marginTop": 7, "color": "#70634e", "fontSize": 12, "lineHeight": "18px" } }, "meta-row": { "": { "marginTop": 9, "flexDirection": "row", "alignItems": "center", "justifyContent": "space-between" } }, "tag": { "": { "paddingTop": 4, "paddingRight": 9, "paddingBottom": 4, "paddingLeft": 9, "borderTopLeftRadius": 8, "borderTopRightRadius": 8, "borderBottomRightRadius": 8, "borderBottomLeftRadius": 8, "color": "#20302d", "backgroundColor": "#ead9bb", "fontSize": 11, "fontWeight": "700" } }, "sold": { "": { "color": "#9b8a6f", "fontSize": 11 } } };
+  const _style_0$1 = { "page-scroll": { "": { "flexGrow": 1, "flexShrink": 1, "flexBasis": "0%", "height": "100%", "backgroundColor": "#f6f1e8" } }, "page-content": { "": { "paddingTop": 24, "paddingRight": 18, "paddingBottom": 34, "paddingLeft": 18 } }, "topbar": { "": { "flexDirection": "row", "alignItems": "center", "justifyContent": "space-between", "marginBottom": 18 } }, "eyebrow": { "": { "color": "#89704d", "fontSize": 11, "fontWeight": "700", "letterSpacing": 0 } }, "title": { "": { "marginTop": 4, "color": "#20302d", "fontSize": 30, "fontWeight": "700" } }, "login-button": { "": { "width": 74, "height": 38, "paddingTop": 0, "paddingRight": 0, "paddingBottom": 0, "paddingLeft": 0, "marginTop": 0, "marginRight": 0, "marginBottom": 0, "marginLeft": 0, "lineHeight": "38px", "borderTopLeftRadius": 19, "borderTopRightRadius": 19, "borderBottomRightRadius": 19, "borderBottomLeftRadius": 19, "backgroundColor": "#800080", "alignItems": "center", "justifyContent": "center" } }, "login-text": { "": { "width": "100%", "height": "100%", "lineHeight": "38px", "textAlign": "center", "color": "#f8f0df", "fontSize": 14, "fontWeight": "700" } }, "hero": { "": { "paddingTop": 20, "paddingRight": 20, "paddingBottom": 20, "paddingLeft": 20, "borderTopLeftRadius": 8, "borderTopRightRadius": 8, "borderBottomRightRadius": 8, "borderBottomLeftRadius": 8, "backgroundColor": "#20302d", "flexDirection": "row", "justifyContent": "space-between", "overflow": "hidden" } }, "hero-copy": { "": { "flexGrow": 1, "flexShrink": 1, "flexBasis": "0%" } }, "hero-kicker": { "": { "color": "#e6b866", "fontSize": 13, "fontWeight": "700" } }, "hero-title": { "": { "marginTop": 10, "color": "#fff8ec", "fontSize": 25, "lineHeight": "34px", "fontWeight": "700" } }, "hero-desc": { "": { "marginTop": 10, "color": "#bfd0c8", "fontSize": 13, "lineHeight": "20px" } }, "hero-badge": { "": { "width": 72, "height": 92, "borderTopLeftRadius": 8, "borderTopRightRadius": 8, "borderBottomRightRadius": 8, "borderBottomLeftRadius": 8, "backgroundColor": "#e6b866", "alignItems": "center", "justifyContent": "center" } }, "badge-value": { "": { "color": "#20302d", "fontSize": 34, "fontWeight": "700" } }, "badge-label": { "": { "color": "#20302d", "fontSize": 12, "fontWeight": "700" } }, "section-head": { "": { "marginTop": 26, "marginBottom": 12, "flexDirection": "row", "alignItems": "flex-end", "justifyContent": "space-between" } }, "section-title": { "": { "color": "#20302d", "fontSize": 20, "fontWeight": "700" } }, "section-note": { "": { "color": "#8a7a61", "fontSize": 12 } }, "native-demo": { "": { "marginBottom": 14, "paddingTop": 14, "paddingRight": 14, "paddingBottom": 14, "paddingLeft": 14, "borderTopLeftRadius": 8, "borderTopRightRadius": 8, "borderBottomRightRadius": 8, "borderBottomLeftRadius": 8, "backgroundColor": "#fffaf1", "flexDirection": "row", "alignItems": "center", "justifyContent": "space-between", "boxShadow": "0 8px 18px rgba(36, 45, 41, 0.08)" } }, "native-demo-copy": { "": { "flexGrow": 1, "flexShrink": 1, "flexBasis": "0%", "paddingRight": 12 } }, "native-demo-actions": { "": { "width": 96 } }, "native-demo-title": { "": { "color": "#20302d", "fontSize": 16, "fontWeight": "700" } }, "native-demo-desc": { "": { "marginTop": 6, "color": "#70634e", "fontSize": 12, "lineHeight": "18px" } }, "native-demo-button": { "": { "width": 92, "height": 38, "lineHeight": "38px", "borderTopLeftRadius": 8, "borderTopRightRadius": 8, "borderBottomRightRadius": 8, "borderBottomLeftRadius": 8, "backgroundColor": "#c46141", "alignItems": "center", "justifyContent": "center" } }, "native-demo-button-secondary": { "": { "marginTop": 8, "backgroundColor": "#20302d" } }, "native-demo-button-text": { "": { "color": "#fffaf1", "fontSize": 13, "fontWeight": "700", "lineHeight": "38px", "width": "100%", "height": "100%", "lines": 1, "textOverflow": "ellipsis" } }, "product-card": { "": { "marginBottom": 12, "paddingTop": 12, "paddingRight": 12, "paddingBottom": 12, "paddingLeft": 12, "borderTopLeftRadius": 8, "borderTopRightRadius": 8, "borderBottomRightRadius": 8, "borderBottomLeftRadius": 8, "backgroundColor": "#fffaf1", "flexDirection": "row", "boxShadow": "0 8px 18px rgba(36, 45, 41, 0.08)" } }, "product-art": { "": { "width": 76, "height": 86, "borderTopLeftRadius": 8, "borderTopRightRadius": 8, "borderBottomRightRadius": 8, "borderBottomLeftRadius": 8, "alignItems": "center", "justifyContent": "center" } }, "product-emoji": { "": { "color": "#fffaf1", "fontSize": 30, "fontWeight": "700" } }, "product-info": { "": { "flexGrow": 1, "flexShrink": 1, "flexBasis": "0%", "marginLeft": 12, "justifyContent": "space-between" } }, "product-row": { "": { "flexDirection": "row", "justifyContent": "space-between", "alignItems": "flex-start" } }, "product-name": { "": { "width": 136, "color": "#20302d", "fontSize": 16, "fontWeight": "700", "flexGrow": 1, "flexShrink": 1, "flexBasis": "0%", "lines": 1, "textOverflow": "ellipsis" } }, "product-price": { "": { "color": "#c46141", "fontSize": 16, "fontWeight": "700" } }, "product-desc": { "": { "marginTop": 7, "color": "#70634e", "fontSize": 12, "lineHeight": "18px" } }, "meta-row": { "": { "marginTop": 9, "flexDirection": "row", "alignItems": "center", "justifyContent": "space-between" } }, "tag": { "": { "paddingTop": 4, "paddingRight": 9, "paddingBottom": 4, "paddingLeft": 9, "borderTopLeftRadius": 8, "borderTopRightRadius": 8, "borderBottomRightRadius": 8, "borderBottomLeftRadius": 8, "color": "#20302d", "backgroundColor": "#ead9bb", "fontSize": 11, "fontWeight": "700" } }, "sold": { "": { "color": "#9b8a6f", "fontSize": 11 } } };
   const _export_sfc = (sfc, props) => {
     const target = sfc.__vccOpts || sfc;
     for (const [key, val] of props) {
@@ -249,7 +249,7 @@
               class: "native-demo-button native-demo-button-secondary",
               onClick: _cache[2] || (_cache[2] = (...args) => $options.openNativeAlbumDemo && $options.openNativeAlbumDemo(...args))
             }, [
-              vue.createElementVNode("text", { class: "native-demo-button-text" }, "打开相册")
+              vue.createElementVNode("text", { class: "native-demo-button-text" }, "打开相册打开相册打开相册")
             ])
           ])
         ]),
@@ -314,52 +314,97 @@
       }
     }
   });
-  const _style_0 = { "page": { "": { "flexGrow": 1, "flexShrink": 1, "flexBasis": "0%", "paddingTop": 30, "paddingRight": 18, "paddingBottom": 30, "paddingLeft": 18, "backgroundColor": "#1f2c2a" } }, "brand-panel": { "": { "paddingTop": 18, "paddingBottom": 26 } }, "brand-eyebrow": { "": { "color": "#e6b866", "fontSize": 12, "fontWeight": "700", "letterSpacing": 0 } }, "brand-title": { "": { "marginTop": 10, "color": "#fff7e6", "fontSize": 34, "fontWeight": "700" } }, "brand-desc": { "": { "marginTop": 10, "color": "#b9cbc3", "fontSize": 14, "lineHeight": "22px" } }, "form-panel": { "": { "paddingTop": 18, "paddingRight": 18, "paddingBottom": 18, "paddingLeft": 18, "borderTopLeftRadius": 8, "borderTopRightRadius": 8, "borderBottomRightRadius": 8, "borderBottomLeftRadius": 8, "backgroundColor": "#fffaf1" } }, "field": { "": { "marginBottom": 16 } }, "label": { "": { "marginBottom": 8, "color": "#20302d", "fontSize": 13, "fontWeight": "700" } }, "input": { "": { "height": 48, "paddingTop": 0, "paddingRight": 14, "paddingBottom": 0, "paddingLeft": 14, "borderTopLeftRadius": 8, "borderTopRightRadius": 8, "borderBottomRightRadius": 8, "borderBottomLeftRadius": 8, "backgroundColor": "#f1e7d4", "color": "#20302d", "fontSize": 15 } }, "test-card": { "": { "marginTop": 2, "marginBottom": 18, "paddingTop": 12, "paddingRight": 12, "paddingBottom": 12, "paddingLeft": 12, "borderTopLeftRadius": 8, "borderTopRightRadius": 8, "borderBottomRightRadius": 8, "borderBottomLeftRadius": 8, "backgroundColor": "#e8d2a6" } }, "test-title": { "": { "color": "#20302d", "fontSize": 14, "fontWeight": "700" } }, "test-line": { "": { "marginTop": 5, "color": "#5d4f3c", "fontSize": 13 } }, "submit-button": { "": { "height": 50, "borderTopLeftRadius": 8, "borderTopRightRadius": 8, "borderBottomRightRadius": 8, "borderBottomLeftRadius": 8, "backgroundColor": "#c46141", "alignItems": "center", "justifyContent": "center" } }, "submit-text": { "": { "color": "#fffaf1", "fontSize": 16, "fontWeight": "700" } }, "ghost-button": { "": { "height": 46, "marginTop": 12, "borderTopLeftRadius": 8, "borderTopRightRadius": 8, "borderBottomRightRadius": 8, "borderBottomLeftRadius": 8, "backgroundColor": "#20302d", "alignItems": "center", "justifyContent": "center" } }, "ghost-text": { "": { "color": "#fffaf1", "fontSize": 14, "fontWeight": "700" } } };
+  const _style_0 = { "page": { "": { "flexGrow": 1, "flexShrink": 1, "flexBasis": "0%", "height": "100%", "backgroundColor": "#ead9bd" } }, "page-content": { "": { "paddingTop": 30, "paddingRight": 18, "paddingBottom": 24, "paddingLeft": 18 } }, "top-row": { "": { "flexDirection": "row", "alignItems": "center", "justifyContent": "space-between" } }, "brand-panel": { "": { "paddingTop": 34 } }, "app-mark": { "": { "width": 58, "height": 58, "borderTopLeftRadius": 20, "borderTopRightRadius": 20, "borderBottomRightRadius": 20, "borderBottomLeftRadius": 20, "backgroundColor": "#213a34", "alignItems": "center", "justifyContent": "center", "boxShadow": "0 12px 24px rgba(33, 58, 52, 0.24)" } }, "app-mark-text": { "": { "color": "#e6b866", "fontSize": 29, "fontWeight": "700" } }, "mode-pill": { "": { "height": 34, "paddingLeft": 13, "paddingRight": 14, "borderTopLeftRadius": 17, "borderTopRightRadius": 17, "borderBottomRightRadius": 17, "borderBottomLeftRadius": 17, "backgroundColor": "#fff8ed", "flexDirection": "row", "alignItems": "center" } }, "mode-leaf": { "": { "width": 10, "height": 14, "marginRight": 7, "borderTopLeftRadius": 8, "borderTopRightRadius": 8, "borderBottomRightRadius": 8, "borderBottomLeftRadius": 8, "backgroundColor": "#7f955f" } }, "mode-text": { "": { "color": "#213a34", "fontSize": 12, "fontWeight": "700" } }, "brand-eyebrow": { "": { "color": "#c45f3d", "fontSize": 12, "fontWeight": "700", "letterSpacing": 0 } }, "brand-title": { "": { "marginTop": 12, "color": "#172623", "fontSize": 42, "lineHeight": "48px", "fontWeight": "700" } }, "brand-desc": { "": { "width": 286, "marginTop": 12, "color": "#776b5d", "fontSize": 15, "lineHeight": "24px" } }, "market-strip": { "": { "height": 126, "marginTop": 22, "flexDirection": "row", "alignItems": "flex-start" } }, "produce-card": { "": { "width": 108, "height": 108, "borderTopLeftRadius": 28, "borderTopRightRadius": 28, "borderBottomRightRadius": 28, "borderBottomLeftRadius": 28, "backgroundColor": "#fff8ed", "boxShadow": "0 16px 34px rgba(49, 37, 24, 0.13)" } }, "produce-card-one": { "": { "marginTop": 12 } }, "produce-card-two": { "": { "marginTop": 22, "marginLeft": -8 } }, "produce-card-three": { "": { "marginTop": 2, "marginLeft": -7 } }, "produce-dot": { "": { "borderTopLeftRadius": 99, "borderTopRightRadius": 99, "borderBottomRightRadius": 99, "borderBottomLeftRadius": 99 } }, "produce-dot-coral": { "": { "width": 42, "height": 42, "marginTop": 30, "marginLeft": 46, "backgroundColor": "#df8b61" } }, "produce-dot-green": { "": { "width": 30, "height": 30, "marginTop": -10, "marginLeft": 34, "backgroundColor": "#9dbb77" } }, "produce-dot-gold": { "": { "width": 30, "height": 30, "marginTop": -30, "marginLeft": 68, "backgroundColor": "#f0c565" } }, "produce-dot-pine": { "": { "width": 48, "height": 48, "marginTop": 32, "marginLeft": 42, "backgroundColor": "#6f8f84" } }, "produce-dot-tan": { "": { "width": 28, "height": 28, "marginTop": -6, "marginLeft": 36, "backgroundColor": "#d6a96b" } }, "produce-dot-dark": { "": { "width": 22, "height": 22, "marginTop": -28, "marginLeft": 76, "backgroundColor": "#2e524b" } }, "produce-dot-red": { "": { "width": 39, "height": 39, "marginTop": 28, "marginLeft": 48, "backgroundColor": "#c45f3d" } }, "produce-dot-olive": { "": { "width": 28, "height": 28, "marginTop": -9, "marginLeft": 38, "backgroundColor": "#7f955f" } }, "produce-dot-gold-large": { "": { "width": 38, "height": 38, "marginTop": -34, "marginLeft": 66, "backgroundColor": "#e4b762" } }, "form-panel": { "": { "marginTop": -8, "paddingTop": 10, "paddingRight": 22, "paddingBottom": 24, "paddingLeft": 22, "borderTopLeftRadius": 32, "borderTopRightRadius": 32, "borderBottomRightRadius": 32, "borderBottomLeftRadius": 32, "backgroundColor": "#fffaf1", "boxShadow": "0 -12px 34px rgba(54, 40, 24, 0.13)" } }, "sheet-handle": { "": { "width": 48, "height": 5, "marginBottom": 18, "marginLeft": "auto", "marginRight": "auto", "borderTopLeftRadius": 3, "borderTopRightRadius": 3, "borderBottomRightRadius": 3, "borderBottomLeftRadius": 3, "backgroundColor": "#d7c5aa" } }, "quick-account": { "": { "height": 62, "marginBottom": 18, "paddingLeft": 16, "paddingRight": 13, "borderTopLeftRadius": 22, "borderTopRightRadius": 22, "borderBottomRightRadius": 22, "borderBottomLeftRadius": 22, "backgroundColor": "#213a34", "flexDirection": "row", "alignItems": "center", "justifyContent": "space-between" } }, "quick-copy": { "": { "flexGrow": 1, "flexShrink": 1, "flexBasis": "0%" } }, "quick-title": { "": { "color": "#fff8ec", "fontSize": 14, "fontWeight": "700" } }, "quick-detail": { "": { "marginTop": 4, "color": "#c9d8d1", "fontSize": 13 } }, "quick-action": { "": { "width": 48, "height": 34, "borderTopLeftRadius": 17, "borderTopRightRadius": 17, "borderBottomRightRadius": 17, "borderBottomLeftRadius": 17, "backgroundColor": "#e4b762", "color": "#172623", "fontSize": 13, "fontWeight": "700", "textAlign": "center", "lineHeight": "34px" } }, "field": { "": { "marginBottom": 12 } }, "label": { "": { "color": "#756857", "fontSize": 11, "fontWeight": "700" } }, "input-shell": { "": { "height": 58, "paddingLeft": 15, "paddingRight": 15, "borderTopLeftRadius": 21, "borderTopRightRadius": 21, "borderBottomRightRadius": 21, "borderBottomLeftRadius": 21, "backgroundColor": "#f2e4cf", "flexDirection": "row", "alignItems": "center" } }, "input-icon": { "": { "width": 32, "height": 32, "marginRight": 12, "borderTopLeftRadius": 16, "borderTopRightRadius": 16, "borderBottomRightRadius": 16, "borderBottomLeftRadius": 16, "backgroundColor": "#e3c99d", "color": "#213a34", "fontSize": 14, "fontWeight": "700", "textAlign": "center", "lineHeight": "32px" } }, "input-copy": { "": { "flexGrow": 1, "flexShrink": 1, "flexBasis": "0%" } }, "input": { "": { "flexGrow": 1, "flexShrink": 1, "flexBasis": "0%", "height": 32, "color": "#172623", "fontSize": 16, "fontWeight": "700" } }, "assist-row": { "": { "marginTop": 1, "marginBottom": 18, "flexDirection": "row", "alignItems": "center", "justifyContent": "space-between" } }, "assist-text": { "": { "color": "#8a7d6c", "fontSize": 12, "fontWeight": "700" } }, "assist-link": { "": { "color": "#c45f3d", "fontSize": 12, "fontWeight": "700" } }, "submit-button": { "": { "height": 58, "borderTopLeftRadius": 29, "borderTopRightRadius": 29, "borderBottomRightRadius": 29, "borderBottomLeftRadius": 29, "backgroundColor": "#c45f3d", "alignItems": "center", "justifyContent": "center", "boxShadow": "0 14px 24px rgba(196, 95, 61, 0.26)" } }, "submit-text": { "": { "color": "#fffaf1", "fontSize": 17, "fontWeight": "700" } } };
   function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
-    return vue.openBlock(), vue.createElementBlock("view", { class: "page" }, [
-      vue.createElementVNode("view", { class: "brand-panel" }, [
-        vue.createElementVNode("text", { class: "brand-eyebrow" }, "DEMO ACCOUNT"),
-        vue.createElementVNode("text", { class: "brand-title" }, "欢迎回来"),
-        vue.createElementVNode("text", { class: "brand-desc" }, "使用下方测试帐号即可完成登录校验。")
-      ]),
-      vue.createElementVNode("view", { class: "form-panel" }, [
-        vue.createElementVNode("view", { class: "field" }, [
-          vue.createElementVNode("text", { class: "label" }, "帐号"),
-          vue.withDirectives(vue.createElementVNode("input", {
-            class: "input",
-            "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => $data.username = $event),
-            placeholder: "请输入帐号"
-          }, null, 512), [
-            [vue.vModelText, $data.username]
+    return vue.openBlock(), vue.createElementBlock("scroll-view", {
+      class: "page",
+      "scroll-y": true
+    }, [
+      vue.createElementVNode("view", { class: "page-content" }, [
+        vue.createElementVNode("view", { class: "top-row" }, [
+          vue.createElementVNode("view", { class: "app-mark" }, [
+            vue.createElementVNode("text", { class: "app-mark-text" }, "M")
+          ]),
+          vue.createElementVNode("view", { class: "mode-pill" }, [
+            vue.createElementVNode("view", { class: "mode-leaf" }),
+            vue.createElementVNode("text", { class: "mode-text" }, "演示账号")
           ])
         ]),
-        vue.createElementVNode("view", { class: "field" }, [
-          vue.createElementVNode("text", { class: "label" }, "密码"),
-          vue.withDirectives(vue.createElementVNode("input", {
-            class: "input",
-            "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => $data.password = $event),
-            password: "true",
-            placeholder: "请输入密码"
-          }, null, 512), [
-            [vue.vModelText, $data.password]
+        vue.createElementVNode("view", { class: "brand-panel" }, [
+          vue.createElementVNode("text", { class: "brand-eyebrow" }, "SPRING MARKET"),
+          vue.createElementVNode("text", { class: "brand-title" }, "欢迎回来"),
+          vue.createElementVNode("text", { class: "brand-desc" }, "登录后继续浏览精选商品、原生能力与移动端购物体验。")
+        ]),
+        vue.createElementVNode("view", { class: "market-strip" }, [
+          vue.createElementVNode("view", { class: "produce-card produce-card-one" }, [
+            vue.createElementVNode("view", { class: "produce-dot produce-dot-coral" }),
+            vue.createElementVNode("view", { class: "produce-dot produce-dot-green" }),
+            vue.createElementVNode("view", { class: "produce-dot produce-dot-gold" })
+          ]),
+          vue.createElementVNode("view", { class: "produce-card produce-card-two" }, [
+            vue.createElementVNode("view", { class: "produce-dot produce-dot-pine" }),
+            vue.createElementVNode("view", { class: "produce-dot produce-dot-tan" }),
+            vue.createElementVNode("view", { class: "produce-dot produce-dot-dark" })
+          ]),
+          vue.createElementVNode("view", { class: "produce-card produce-card-three" }, [
+            vue.createElementVNode("view", { class: "produce-dot produce-dot-red" }),
+            vue.createElementVNode("view", { class: "produce-dot produce-dot-olive" }),
+            vue.createElementVNode("view", { class: "produce-dot produce-dot-gold-large" })
           ])
         ]),
-        vue.createElementVNode("view", { class: "test-card" }, [
-          vue.createElementVNode("text", { class: "test-title" }, "测试帐号"),
-          vue.createElementVNode("text", { class: "test-line" }, "帐号：admin"),
-          vue.createElementVNode("text", { class: "test-line" }, "密码：123456")
-        ]),
-        vue.createElementVNode("button", {
-          class: "submit-button",
-          onClick: _cache[2] || (_cache[2] = (...args) => $options.login && $options.login(...args))
-        }, [
-          vue.createElementVNode("text", { class: "submit-text" }, "登录")
-        ]),
-        vue.createElementVNode("button", {
-          class: "ghost-button",
-          onClick: _cache[3] || (_cache[3] = (...args) => $options.fillDemo && $options.fillDemo(...args))
-        }, [
-          vue.createElementVNode("text", { class: "ghost-text" }, "填入测试帐号")
+        vue.createElementVNode("view", { class: "form-panel" }, [
+          vue.createElementVNode("view", { class: "sheet-handle" }),
+          vue.createElementVNode("view", {
+            class: "quick-account",
+            onClick: _cache[0] || (_cache[0] = (...args) => $options.fillDemo && $options.fillDemo(...args))
+          }, [
+            vue.createElementVNode("view", { class: "quick-copy" }, [
+              vue.createElementVNode("text", { class: "quick-title" }, "测试帐号"),
+              vue.createElementVNode("text", { class: "quick-detail" }, "admin / 123456")
+            ]),
+            vue.createElementVNode("text", { class: "quick-action" }, "填入")
+          ]),
+          vue.createElementVNode("view", { class: "field" }, [
+            vue.createElementVNode("view", { class: "input-shell" }, [
+              vue.createElementVNode("text", { class: "input-icon" }, "人"),
+              vue.createElementVNode("view", { class: "input-copy" }, [
+                vue.createElementVNode("text", { class: "label" }, "帐号"),
+                vue.withDirectives(vue.createElementVNode("input", {
+                  class: "input",
+                  "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => $data.username = $event),
+                  placeholder: "请输入帐号"
+                }, null, 512), [
+                  [vue.vModelText, $data.username]
+                ])
+              ])
+            ])
+          ]),
+          vue.createElementVNode("view", { class: "field" }, [
+            vue.createElementVNode("view", { class: "input-shell" }, [
+              vue.createElementVNode("text", { class: "input-icon" }, "锁"),
+              vue.createElementVNode("view", { class: "input-copy" }, [
+                vue.createElementVNode("text", { class: "label" }, "密码"),
+                vue.withDirectives(vue.createElementVNode("input", {
+                  class: "input",
+                  "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => $data.password = $event),
+                  password: "true",
+                  placeholder: "请输入密码"
+                }, null, 512), [
+                  [vue.vModelText, $data.password]
+                ])
+              ])
+            ])
+          ]),
+          vue.createElementVNode("view", { class: "assist-row" }, [
+            vue.createElementVNode("text", { class: "assist-text" }, "本地校验"),
+            vue.createElementVNode("text", { class: "assist-link" }, "安全演示模式")
+          ]),
+          vue.createElementVNode("button", {
+            class: "submit-button",
+            onClick: _cache[3] || (_cache[3] = (...args) => $options.login && $options.login(...args))
+          }, [
+            vue.createElementVNode("text", { class: "submit-text" }, "立即登录")
+          ])
         ])
       ])
     ]);

@@ -1,37 +1,82 @@
 <template>
-  <view class="page">
-    <view class="brand-panel">
-      <text class="brand-eyebrow">DEMO ACCOUNT</text>
-      <text class="brand-title">欢迎回来</text>
-      <text class="brand-desc">使用下方测试帐号即可完成登录校验。</text>
+  <scroll-view class="page" :scroll-y="true">
+    <view class="page-content">
+      <view class="top-row">
+        <view class="app-mark">
+          <text class="app-mark-text">M</text>
+        </view>
+        <view class="mode-pill">
+          <view class="mode-leaf"></view>
+          <text class="mode-text">演示账号</text>
+        </view>
+      </view>
+
+      <view class="brand-panel">
+        <text class="brand-eyebrow">SPRING MARKET</text>
+        <text class="brand-title">欢迎回来</text>
+        <text class="brand-desc">登录后继续浏览精选商品、原生能力与移动端购物体验。</text>
+      </view>
+
+      <view class="market-strip">
+        <view class="produce-card produce-card-one">
+          <view class="produce-dot produce-dot-coral"></view>
+          <view class="produce-dot produce-dot-green"></view>
+          <view class="produce-dot produce-dot-gold"></view>
+        </view>
+        <view class="produce-card produce-card-two">
+          <view class="produce-dot produce-dot-pine"></view>
+          <view class="produce-dot produce-dot-tan"></view>
+          <view class="produce-dot produce-dot-dark"></view>
+        </view>
+        <view class="produce-card produce-card-three">
+          <view class="produce-dot produce-dot-red"></view>
+          <view class="produce-dot produce-dot-olive"></view>
+          <view class="produce-dot produce-dot-gold-large"></view>
+        </view>
+      </view>
+
+      <view class="form-panel">
+        <view class="sheet-handle"></view>
+
+        <view class="quick-account" @click="fillDemo">
+          <view class="quick-copy">
+            <text class="quick-title">测试帐号</text>
+            <text class="quick-detail">admin / 123456</text>
+          </view>
+          <text class="quick-action">填入</text>
+        </view>
+
+        <view class="field">
+          <view class="input-shell">
+            <text class="input-icon">人</text>
+            <view class="input-copy">
+              <text class="label">帐号</text>
+              <input class="input" v-model="username" placeholder="请输入帐号" />
+            </view>
+          </view>
+        </view>
+
+        <view class="field">
+          <view class="input-shell">
+            <text class="input-icon">锁</text>
+            <view class="input-copy">
+              <text class="label">密码</text>
+              <input class="input" v-model="password" password="true" placeholder="请输入密码" />
+            </view>
+          </view>
+        </view>
+
+        <view class="assist-row">
+          <text class="assist-text">本地校验</text>
+          <text class="assist-link">安全演示模式</text>
+        </view>
+
+        <button class="submit-button" @click="login">
+          <text class="submit-text">立即登录</text>
+        </button>
+      </view>
     </view>
-
-    <view class="form-panel">
-      <view class="field">
-        <text class="label">帐号</text>
-        <input class="input" v-model="username" placeholder="请输入帐号" />
-      </view>
-
-      <view class="field">
-        <text class="label">密码</text>
-        <input class="input" v-model="password" password="true" placeholder="请输入密码" />
-      </view>
-
-      <view class="test-card">
-        <text class="test-title">测试帐号</text>
-        <text class="test-line">帐号：admin</text>
-        <text class="test-line">密码：123456</text>
-      </view>
-
-      <button class="submit-button" @click="login">
-        <text class="submit-text">登录</text>
-      </button>
-
-      <button class="ghost-button" @click="fillDemo">
-        <text class="ghost-text">填入测试帐号</text>
-      </button>
-    </view>
-  </view>
+  </scroll-view>
 </template>
 
 <script>
@@ -70,108 +115,327 @@ export default {
 <style>
 .page {
   flex: 1;
-  padding: 30px 18px;
-  background-color: #1f2c2a;
+  height: 100%;
+  background-color: #ead9bd;
+}
+
+.page-content {
+  padding: 30px 18px 24px;
+}
+
+.top-row {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .brand-panel {
-  padding-top: 18px;
-  padding-bottom: 26px;
+  padding-top: 34px;
+}
+
+.app-mark {
+  width: 58px;
+  height: 58px;
+  border-radius: 20px;
+  background-color: #213a34;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 24px rgba(33, 58, 52, 0.24);
+}
+
+.app-mark-text {
+  color: #e6b866;
+  font-size: 29px;
+  font-weight: 700;
+}
+
+.mode-pill {
+  height: 34px;
+  padding-left: 13px;
+  padding-right: 14px;
+  border-radius: 17px;
+  background-color: #fff8ed;
+  flex-direction: row;
+  align-items: center;
+}
+
+.mode-leaf {
+  width: 10px;
+  height: 14px;
+  margin-right: 7px;
+  border-radius: 8px;
+  background-color: #7f955f;
+}
+
+.mode-text {
+  color: #213a34;
+  font-size: 12px;
+  font-weight: 700;
 }
 
 .brand-eyebrow {
-  color: #e6b866;
+  color: #c45f3d;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0;
 }
 
 .brand-title {
-  margin-top: 10px;
-  color: #fff7e6;
-  font-size: 34px;
+  margin-top: 12px;
+  color: #172623;
+  font-size: 42px;
+  line-height: 48px;
   font-weight: 700;
 }
 
 .brand-desc {
-  margin-top: 10px;
-  color: #b9cbc3;
-  font-size: 14px;
-  line-height: 22px;
+  width: 286px;
+  margin-top: 12px;
+  color: #776b5d;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.market-strip {
+  height: 126px;
+  margin-top: 22px;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.produce-card {
+  width: 108px;
+  height: 108px;
+  border-radius: 28px;
+  background-color: #fff8ed;
+  box-shadow: 0 16px 34px rgba(49, 37, 24, 0.13);
+}
+
+.produce-card-one {
+  margin-top: 12px;
+}
+
+.produce-card-two {
+  margin-top: 22px;
+  margin-left: -8px;
+}
+
+.produce-card-three {
+  margin-top: 2px;
+  margin-left: -7px;
+}
+
+.produce-dot {
+  border-radius: 99px;
+}
+
+.produce-dot-coral {
+  width: 42px;
+  height: 42px;
+  margin-top: 30px;
+  margin-left: 46px;
+  background-color: #df8b61;
+}
+
+.produce-dot-green {
+  width: 30px;
+  height: 30px;
+  margin-top: -10px;
+  margin-left: 34px;
+  background-color: #9dbb77;
+}
+
+.produce-dot-gold {
+  width: 30px;
+  height: 30px;
+  margin-top: -30px;
+  margin-left: 68px;
+  background-color: #f0c565;
+}
+
+.produce-dot-pine {
+  width: 48px;
+  height: 48px;
+  margin-top: 32px;
+  margin-left: 42px;
+  background-color: #6f8f84;
+}
+
+.produce-dot-tan {
+  width: 28px;
+  height: 28px;
+  margin-top: -6px;
+  margin-left: 36px;
+  background-color: #d6a96b;
+}
+
+.produce-dot-dark {
+  width: 22px;
+  height: 22px;
+  margin-top: -28px;
+  margin-left: 76px;
+  background-color: #2e524b;
+}
+
+.produce-dot-red {
+  width: 39px;
+  height: 39px;
+  margin-top: 28px;
+  margin-left: 48px;
+  background-color: #c45f3d;
+}
+
+.produce-dot-olive {
+  width: 28px;
+  height: 28px;
+  margin-top: -9px;
+  margin-left: 38px;
+  background-color: #7f955f;
+}
+
+.produce-dot-gold-large {
+  width: 38px;
+  height: 38px;
+  margin-top: -34px;
+  margin-left: 66px;
+  background-color: #e4b762;
 }
 
 .form-panel {
-  padding: 18px;
-  border-radius: 8px;
+  margin-top: -8px;
+  padding: 10px 22px 24px;
+  border-radius: 32px;
   background-color: #fffaf1;
+  box-shadow: 0 -12px 34px rgba(54, 40, 24, 0.13);
 }
 
-.field {
-  margin-bottom: 16px;
-}
-
-.label {
-  margin-bottom: 8px;
-  color: #20302d;
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.input {
-  height: 48px;
-  padding: 0 14px;
-  border-radius: 8px;
-  background-color: #f1e7d4;
-  color: #20302d;
-  font-size: 15px;
-}
-
-.test-card {
-  margin-top: 2px;
+.sheet-handle {
+  width: 48px;
+  height: 5px;
   margin-bottom: 18px;
-  padding: 12px;
-  border-radius: 8px;
-  background-color: #e8d2a6;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 3px;
+  background-color: #d7c5aa;
 }
 
-.test-title {
-  color: #20302d;
+.quick-account {
+  height: 62px;
+  margin-bottom: 18px;
+  padding-left: 16px;
+  padding-right: 13px;
+  border-radius: 22px;
+  background-color: #213a34;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.quick-copy {
+  flex: 1;
+}
+
+.quick-title {
+  color: #fff8ec;
   font-size: 14px;
   font-weight: 700;
 }
 
-.test-line {
-  margin-top: 5px;
-  color: #5d4f3c;
+.quick-detail {
+  margin-top: 4px;
+  color: #c9d8d1;
   font-size: 13px;
 }
 
-.submit-button {
-  height: 50px;
-  border-radius: 8px;
-  background-color: #c46141;
-  align-items: center;
-  justify-content: center;
+.quick-action {
+  width: 48px;
+  height: 34px;
+  border-radius: 17px;
+  background-color: #e4b762;
+  color: #172623;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 34px;
 }
 
-.submit-text {
-  color: #fffaf1;
+.field {
+  margin-bottom: 12px;
+}
+
+.label {
+  color: #756857;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.input-shell {
+  height: 58px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 21px;
+  background-color: #f2e4cf;
+  flex-direction: row;
+  align-items: center;
+}
+
+.input-icon {
+  width: 32px;
+  height: 32px;
+  margin-right: 12px;
+  border-radius: 16px;
+  background-color: #e3c99d;
+  color: #213a34;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 32px;
+}
+
+.input-copy {
+  flex: 1;
+}
+
+.input {
+  flex: 1;
+  height: 32px;
+  color: #172623;
   font-size: 16px;
   font-weight: 700;
 }
 
-.ghost-button {
-  height: 46px;
-  margin-top: 12px;
-  border-radius: 8px;
-  background-color: #20302d;
+.assist-row {
+  margin-top: 1px;
+  margin-bottom: 18px;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 
-.ghost-text {
+.assist-text {
+  color: #8a7d6c;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.assist-link {
+  color: #c45f3d;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.submit-button {
+  height: 58px;
+  border-radius: 29px;
+  background-color: #c45f3d;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 14px 24px rgba(196, 95, 61, 0.26);
+}
+
+.submit-text {
   color: #fffaf1;
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 700;
 }
 </style>

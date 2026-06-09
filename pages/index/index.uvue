@@ -38,7 +38,7 @@
             <text class="native-demo-button-text">调用插件</text>
           </button>
           <button class="native-demo-button native-demo-button-secondary" @click="openNativeAlbumDemo">
-            <text class="native-demo-button-text">打开相册</text>
+            <text class="native-demo-button-text">打开相册打开相册打开相册</text>
           </button>
         </view>
       </view>
@@ -127,7 +127,7 @@ export default {
         },
         {
           id: 5,
-          name: '亚麻收纳篮',
+          name: '亚麻收纳篮--亚麻收纳篮-/亚麻收纳篮亚麻收纳篮亚麻收纳篮亚麻收纳篮亚麻收纳篮亚麻收纳篮',
           price: '45.00',
           desc: '柔软布面和硬挺边缘，适合桌面小物整理。',
           tag: '家居',
@@ -262,13 +262,20 @@ export default {
 .login-button {
   width: 74px;
   height: 38px;
+  padding: 0;
+  margin: 0;
+  line-height: 38px;
   border-radius: 19px;
-  background-color: #20302d;
+  background-color: purple;
   align-items: center;
   justify-content: center;
 }
 
 .login-text {
+  width: 100%;
+  height: 100%;
+  line-height: 38px;
+  text-align: center;
   color: #f8f0df;
   font-size: 14px;
   font-weight: 700;
@@ -386,6 +393,7 @@ export default {
 .native-demo-button {
   width: 92px;
   height: 38px;
+  line-height: 38px;
   border-radius: 8px;
   background-color: #c46141;
   align-items: center;
@@ -401,6 +409,11 @@ export default {
   color: #fffaf1;
   font-size: 13px;
   font-weight: 700;
+  line-height: 38px;
+  width: 100%;
+  height: 100%;
+  lines: 1;
+  text-overflow: ellipsis;
 }
 
 .product-card {
@@ -434,7 +447,7 @@ export default {
 
 .product-row {
   flex-direction: row;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   align-items: flex-start;
 }
 
@@ -443,7 +456,7 @@ export default {
   color: #20302d;
   font-size: 16px;
   font-weight: 700;
-  flex-shrink: 1;
+  flex: 1;
   lines: 1;
   text-overflow: ellipsis;
   }

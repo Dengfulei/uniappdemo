@@ -1,4 +1,5 @@
 import { Date, NSObject } from 'Foundation'
+import { DispatchQueue } from 'Dispatch'
 import { UIImagePickerController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIDevice, UIPasteboard } from 'UIKit'
 import { CopyNativeDemoText, GetNativeDemoInfo, NativeAlbumCallback, NativeAlbumResult, NativeDemoInfo, OpenNativeAlbum } from '../interface.uts'
 
@@ -40,12 +41,16 @@ class NativeAlbumPickerManager extends NSObject implements UIImagePickerControll
     pickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
     pickerController.mediaTypes = ['public.image']
 
-    UTSiOS.getCurrentViewController().present(pickerController, animated = true, completion = null)
-    callback({
-      action: 'opened',
-      message: '已打开 iOS 系统相册',
-      mediaType: 'public.image'
-    } as NativeAlbumResult)
+    DispatchQueue.main.async(execute = () : void => {
+      UTSiOS.getCurrentViewController().present(pickerController, animated = true, completion = () : void => {
+        console.log('>>>>>>>>>>>>>>>')
+        callback({
+          action: 'opened',
+          message: '已打开 iOS 系统相册',
+          mediaType: 'public.image'
+        } as NativeAlbumResult)
+      })
+    })
     return true
   }
 
