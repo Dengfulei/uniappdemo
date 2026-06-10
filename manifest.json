@@ -41,5 +41,12 @@
 		"router": {
 			"mode": ""
 		}
+	},
+	"app-harmony": {
+		"distribute": {
+			"bundleName": "com.codex.uniappx.verify",
+			"targetSdkVersion": "5.0.1(13)",
+			"compatibleSdkVersion": "5.0.1(13)"
+		}
 	}
 }

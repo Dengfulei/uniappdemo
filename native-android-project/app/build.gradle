@@ -3,8 +3,26 @@ plugins {
     id "org.jetbrains.kotlin.android"
 }
 
+apply plugin: "com.huawei.agconnect"
+
+def signingProperties = new Properties()
+def signingPropertiesFile = rootProject.file("local.properties")
+if (signingPropertiesFile.exists()) {
+    signingPropertiesFile.withInputStream { signingProperties.load(it) }
+}
+
+def releaseSigningKeys = [
+        "RELEASE_STORE_FILE",
+        "RELEASE_STORE_PASSWORD",
+        "RELEASE_KEY_ALIAS",
+        "RELEASE_KEY_PASSWORD"
+]
+def hasReleaseSigning = releaseSigningKeys.every {
+    signingProperties.getProperty(it)?.trim()
+}
+
 android {
-    namespace "com.dcloud.uniappdemo"
+    namespace "com.xiaomai.app"
     compileSdk 35
 
     buildFeatures {
@@ -12,7 +30,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.dcloud.uniappdemo"
+        applicationId "com.xiaomai.app"
         minSdk 21
         targetSdk 35
         versionCode 100
@@ -20,6 +38,25 @@ android {
 
         buildConfigField "String", "UTSRegisterComponents", "\"[]\""
         buildConfigField "String[]", "UTSHooksClassArray", "{}"
+    }
+
+    signingConfigs {
+        if (hasReleaseSigning) {
+            release {
+                storeFile rootProject.file(signingProperties.getProperty("RELEASE_STORE_FILE"))
+                storePassword signingProperties.getProperty("RELEASE_STORE_PASSWORD")
+                keyAlias signingProperties.getProperty("RELEASE_KEY_ALIAS")
+                keyPassword signingProperties.getProperty("RELEASE_KEY_PASSWORD")
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            if (hasReleaseSigning) {
+                signingConfig signingConfigs.release
+            }
+        }
     }
 
     aaptOptions {

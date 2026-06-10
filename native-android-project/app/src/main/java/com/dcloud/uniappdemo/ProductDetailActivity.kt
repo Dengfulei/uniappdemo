@@ -1,4 +1,4 @@
-package com.dcloud.uniappdemo
+package com.xiaomai.app
 
 import android.app.Activity
 import android.content.Intent

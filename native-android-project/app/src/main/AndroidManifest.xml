@@ -17,6 +17,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/UniAppX.Activity.DefaultTheme"
             android:windowSoftInputMode="adjustResize"
+            tools:ignore="Instantiatable"
             tools:replace="android:label,android:exported,android:theme,android:configChanges,android:windowSoftInputMode,android:screenOrientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
