@@ -3,60 +3,41 @@
     <view class="page-content">
       <view class="topbar">
         <view>
-          <text class="eyebrow">SPRING MARKET</text>
-          <text class="title">今日好物</text>
+          <text class="eyebrow">DAILY MARKET</text>
+          <text class="title">首页</text>
         </view>
-        <button class="login-button" @click="goLogin">
-          <text class="login-text">登录</text>
+        <button class="cart-button" @click="goCart">
+          <text class="cart-button-text">购物车</text>
         </button>
       </view>
 
       <view class="hero">
-        <view class="hero-copy">
-          <text class="hero-kicker">限时精选</text>
-          <text class="hero-title">把周末餐桌和日常补给一次配齐</text>
-          <text class="hero-desc">新鲜、轻量、适合移动端浏览的商品陈列示例。</text>
-        </view>
-        <view class="hero-badge">
-          <text class="badge-value">8</text>
-          <text class="badge-label">件上新</text>
+        <image class="hero-image" :src="heroImage" mode="aspectFill"></image>
+        <view class="hero-mask">
+          <text class="hero-kicker">今日精选</text>
+          <text class="hero-title">把舒服生活装进购物车</text>
+          <text class="hero-desc">精选食品、家居与个护好物，点击商品查看详情和图片预览。</text>
         </view>
       </view>
 
       <view class="section-head">
         <text class="section-title">商品列表</text>
-        <text class="section-note">测试数据</text>
+        <text class="section-note">{{ products.length }} 件商品</text>
       </view>
 
-      <view class="native-demo">
-        <view class="native-demo-copy">
-          <text class="native-demo-title">UTS 原生插件</text>
-          <text class="native-demo-desc">{{ nativeDemoText }}</text>
-        </view>
-        <view class="native-demo-actions">
-          <button class="native-demo-button" @click="runNativeDemo">
-            <text class="native-demo-button-text">调用插件</text>
-          </button>
-          <button class="native-demo-button native-demo-button-secondary" @click="openNativeAlbumDemo">
-            <text class="native-demo-button-text">打开相册打开相册打开相册</text>
-          </button>
-        </view>
-      </view>
-
-      <view class="product-list">
+      <view class="product-grid">
         <view class="product-card" v-for="item in products" :key="item.id" @click="goProductDetail(item)">
-          <view class="product-art" :style="{ backgroundColor: item.color }">
-            <text class="product-emoji">{{ item.icon }}</text>
-          </view>
+          <image class="product-image" :src="item.image" mode="aspectFill"></image>
           <view class="product-info">
-            <view class="product-row">
-              <text class="product-name">{{ item.name }}</text>
-              <text class="product-price">¥{{ item.price }}</text>
-            </view>
-            <text class="product-desc">{{ item.desc }}</text>
-            <view class="meta-row">
+            <view class="tag-row">
               <text class="tag">{{ item.tag }}</text>
               <text class="sold">已售 {{ item.sold }}</text>
+            </view>
+            <text class="product-name">{{ item.name }}</text>
+            <text class="product-desc">{{ item.desc }}</text>
+            <view class="price-row">
+              <text class="product-price">¥{{ item.price }}</text>
+              <text class="original-price">¥{{ item.originalPrice }}</text>
             </view>
           </view>
         </view>
@@ -66,162 +47,141 @@
 </template>
 
 <script>
-import { NativeBridgeMessage, NativeBridgeOptions, offNativeBridgeMessage, onNativeBridgeMessage, openNativeBridge } from '@/uni_modules/native-bridge'
-import { copyNativeDemoText, getNativeDemoInfo, openNativeAlbum } from '@/uni_modules/native-demo'
-
 type Product = {
   id: number
   name: string
   price: string
+  originalPrice: string
   desc: string
   tag: string
   sold: number
-  icon: string
-  color: string
+  image: string
+  images: string[]
+  summary: string
+  specs: string[]
 }
 
 export default {
   data() {
     return {
-      nativeDemoText: '点击按钮读取当前平台设备信息，并写入系统剪贴板。',
+      heroImage: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=80',
       products: [
         {
           id: 1,
           name: '手冲咖啡豆',
           price: '68.00',
+          originalPrice: '89.00',
           desc: '浅烘焙，柑橘和蜂蜜香气，适合早晨醒脑。',
           tag: '饮品',
           sold: 238,
-          icon: '☕',
-          color: '#d9b07a'
+          image: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=900&q=80',
+          images: [
+            'https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=80'
+          ],
+          summary: '适合手冲、冷萃和法压，入口明亮，尾段带柔和坚果感。',
+          specs: ['产地：云南普洱', '规格：250g / 袋', '烘焙：浅中烘']
         },
         {
           id: 2,
           name: '有机蓝莓盒',
           price: '36.90',
+          originalPrice: '45.00',
           desc: '酸甜均衡，可直接食用，也适合搭配酸奶。',
           tag: '水果',
           sold: 521,
-          icon: '🫐',
-          color: '#7d8fc8'
+          image: 'https://images.unsplash.com/photo-1498557850523-fd3d118b962e?auto=format&fit=crop&w=900&q=80',
+          images: [
+            'https://images.unsplash.com/photo-1498557850523-fd3d118b962e?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?auto=format&fit=crop&w=1200&q=80'
+          ],
+          summary: '颗粒饱满，低温配送，早餐、下午茶和轻食场景都合适。',
+          specs: ['产地：山东青岛', '规格：125g / 盒', '保鲜：冷藏保存']
         },
         {
           id: 3,
           name: '山茶花洗护套装',
           price: '129.00',
+          originalPrice: '169.00',
           desc: '清爽花香，旅行和日常都能轻松收纳。',
           tag: '个护',
           sold: 96,
-          icon: '✦',
-          color: '#d9868c'
+          image: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=900&q=80',
+          images: [
+            'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1200&q=80'
+          ],
+          summary: '泡沫细腻，花香干净不厚重，适合日常通勤和周末短途。',
+          specs: ['容量：300ml + 300ml', '香型：山茶花', '适用：日常清洁']
         },
         {
           id: 4,
           name: '轻食鸡胸沙拉',
           price: '24.50',
+          originalPrice: '32.00',
           desc: '高蛋白轻负担，午餐时段的稳妥选择。',
           tag: '轻食',
           sold: 314,
-          icon: '🥗',
-          color: '#91b77f'
+          image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=80',
+          images: [
+            'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&w=1200&q=80'
+          ],
+          summary: '鸡胸肉、绿叶菜和谷物组合，饱腹感稳定，适合工作日午餐。',
+          specs: ['热量：约 320kcal', '配送：当日冷链', '口味：低脂油醋汁']
         },
         {
           id: 5,
-          name: '亚麻收纳篮--亚麻收纳篮-/亚麻收纳篮亚麻收纳篮亚麻收纳篮亚麻收纳篮亚麻收纳篮亚麻收纳篮',
+          name: '亚麻收纳篮',
           price: '45.00',
+          originalPrice: '59.00',
           desc: '柔软布面和硬挺边缘，适合桌面小物整理。',
           tag: '家居',
           sold: 185,
-          icon: '▣',
-          color: '#c49a68'
+          image: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&w=900&q=80',
+          images: [
+            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1484101403633-562f891dc89a?auto=format&fit=crop&w=1200&q=80'
+          ],
+          summary: '适合放置遥控器、护肤品、数据线和桌面杂物，视觉更清爽。',
+          specs: ['尺寸：28 x 18 x 16cm', '材质：棉麻混纺', '颜色：燕麦米']
         },
         {
           id: 6,
           name: '便携香薰蜡烛',
           price: '59.00',
+          originalPrice: '79.00',
           desc: '雪松、无花果与干净皂感，睡前刚刚好。',
           tag: '香氛',
           sold: 127,
-          icon: '◐',
-          color: '#85a7a1'
+          image: 'https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=900&q=80',
+          images: [
+            'https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1596433809259-974bbea6a3aa?auto=format&fit=crop&w=1200&q=80'
+          ],
+          summary: '小罐装更适合卧室、浴室和出差携带，燃烧稳定。',
+          specs: ['重量：90g', '香调：雪松无花果', '燃烧：约 18 小时']
         }
       ] as Product[]
     }
   },
-  onLoad() {
-	
-    onNativeBridgeMessage((message : NativeBridgeMessage) => {
-      this.handleNativeBridgeMessage(message)
-    })
-  },
-  onUnload() {
-    offNativeBridgeMessage()
-  },
   methods: {
-    goLogin() {
-      uni.navigateTo({
-        url: '/pages/login/login'
+    goCart() {
+      uni.switchTab({
+        url: '/pages/cart/cart'
       })
     },
     goProductDetail(item: Product) {
-      const data = JSON.stringify({
-        id: item.id,
-        name: item.name,
-        price: item.price,
-        desc: item.desc,
-        tag: item.tag,
-        sold: item.sold,
-        icon: item.icon,
-        color: item.color
+      const data = encodeURIComponent(JSON.stringify(item))
+      uni.navigateTo({
+        url: `/pages/product/detail?item=${data}`
       })
-
-      const options = {
-        methodName: 'productDetail',
-        data: data
-      } as NativeBridgeOptions
-
-      openNativeBridge(options)
-    },
-    runNativeDemo() {
-      const info = getNativeDemoInfo()
-      const text = `${info.systemName} ${info.systemVersion} / ${info.deviceName}`
-      const copied = copyNativeDemoText(`uni-app x 调用 UTS 原生插件成功：${text}`)
-
-      this.nativeDemoText = copied ? `已调用 ${info.platform} 原生能力：${text}` : `已读取设备信息：${text}`
-      uni.showToast({
-        title: copied ? '原生插件调用成功' : '已读取设备信息',
-        icon: 'none'
-      })
-    },
-    openNativeAlbumDemo() {
-      const opened = openNativeAlbum((result) => {
-        this.nativeDemoText = `${result.message}${result.mediaType != '' ? `：${result.mediaType}` : ''}`
-      })
-
-      if (!opened) {
-        uni.showToast({
-          title: '相册不可用',
-          icon: 'none'
-        })
-        return
-      }
-
-      uni.showToast({
-        title: '正在打开相册',
-        icon: 'none'
-      })
-    },
-    handleNativeBridgeMessage(message: NativeBridgeMessage) {
-      if (message.methodName == 'productNameTap') {
-        console.log(`收到原生商品标题点击消息: ${message.data}`)
-        uni.showToast({
-          title: '收到原生消息',
-          icon: 'none'
-        })
-        return
-      }
-
-      console.log(`收到原生消息: ${message.methodName}, data: ${message.data}`)
     }
   }
 }
@@ -231,22 +191,22 @@ export default {
 .page-scroll {
   flex: 1;
   height: 100%;
-  background-color: #f6f1e8;
+  background-color: #f7f3ea;
 }
 
 .page-content {
-  padding: 24px 18px 34px;
+  padding: 22px 16px 32px;
 }
 
 .topbar {
+  margin-bottom: 18px;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 18px;
 }
 
 .eyebrow {
-  color: #89704d;
+  color: #8b8172;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0;
@@ -254,92 +214,76 @@ export default {
 
 .title {
   margin-top: 4px;
-  color: #20302d;
-  font-size: 30px;
+  color: #192421;
+  font-size: 32px;
+  line-height: 38px;
   font-weight: 700;
 }
 
-.login-button {
-  width: 74px;
+.cart-button {
+  width: 82px;
   height: 38px;
   padding: 0;
   margin: 0;
-  line-height: 38px;
-  border-radius: 19px;
-  background-color: purple;
+  border-radius: 8px;
+  background-color: #192421;
   align-items: center;
   justify-content: center;
 }
 
-.login-text {
+.cart-button-text {
   width: 100%;
-  height: 100%;
+  height: 38px;
+  color: #fffaf1;
+  font-size: 13px;
+  font-weight: 700;
   line-height: 38px;
   text-align: center;
-  color: #f8f0df;
-  font-size: 14px;
-  font-weight: 700;
 }
 
 .hero {
-  /* min-height: 168px; */
-  padding: 20px;
+  height: 188px;
   border-radius: 8px;
-  background-color: #20302d;
-  flex-direction: row;
-  justify-content: space-between;
   overflow: hidden;
+  background-color: #192421;
 }
 
-.hero-copy {
-  /* width: 226px; */
-  flex: 1;
+.hero-image {
+  width: 100%;
+  height: 188px;
+}
+
+.hero-mask {
+  height: 188px;
+  margin-top: -188px;
+  padding: 20px;
+  background-color: rgba(25, 36, 33, 0.42);
+  justify-content: flex-end;
 }
 
 .hero-kicker {
-  color: #e6b866;
-  font-size: 13px;
+  color: #f6c95f;
+  font-size: 12px;
   font-weight: 700;
 }
 
 .hero-title {
-  margin-top: 10px;
-  color: #fff8ec;
-  font-size: 25px;
+  margin-top: 8px;
+  color: #fffaf1;
+  font-size: 27px;
   line-height: 34px;
   font-weight: 700;
 }
 
 .hero-desc {
-  margin-top: 10px;
-  color: #bfd0c8;
+  margin-top: 8px;
+  color: #f2eadb;
   font-size: 13px;
-  line-height: 20px;
-}
-
-.hero-badge {
-  width: 72px;
-  height: 92px;
-  border-radius: 8px;
-  background-color: #e6b866;
-  align-items: center;
-  justify-content: center;
-}
-
-.badge-value {
-  color: #20302d;
-  font-size: 34px;
-  font-weight: 700;
-}
-
-.badge-label {
-  color: #20302d;
-  font-size: 12px;
-  font-weight: 700;
+  line-height: 19px;
 }
 
 .section-head {
-  margin-top: 26px;
+  margin-top: 24px;
   margin-bottom: 12px;
   flex-direction: row;
   align-items: flex-end;
@@ -347,151 +291,89 @@ export default {
 }
 
 .section-title {
-  color: #20302d;
+  color: #192421;
   font-size: 20px;
   font-weight: 700;
 }
 
 .section-note {
-  color: #8a7a61;
+  color: #8b8172;
   font-size: 12px;
-}
-
-.native-demo {
-  margin-bottom: 14px;
-  padding: 14px;
-  border-radius: 8px;
-  background-color: #fffaf1;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 8px 18px rgba(36, 45, 41, 0.08);
-}
-
-.native-demo-copy {
-  flex: 1;
-  padding-right: 12px;
-}
-
-.native-demo-actions {
-  width: 96px;
-}
-
-.native-demo-title {
-  color: #20302d;
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.native-demo-desc {
-  margin-top: 6px;
-  color: #70634e;
-  font-size: 12px;
-  line-height: 18px;
-}
-
-.native-demo-button {
-  width: 92px;
-  height: 38px;
-  line-height: 38px;
-  border-radius: 8px;
-  background-color: #c46141;
-  align-items: center;
-  justify-content: center;
-}
-
-.native-demo-button-secondary {
-  margin-top: 8px;
-  background-color: #20302d;
-}
-
-.native-demo-button-text {
-  color: #fffaf1;
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 38px;
-  width: 100%;
-  height: 100%;
-  lines: 1;
-  text-overflow: ellipsis;
 }
 
 .product-card {
   margin-bottom: 12px;
-  padding: 12px;
   border-radius: 8px;
   background-color: #fffaf1;
-  flex-direction: row;
+  overflow: hidden;
   box-shadow: 0 8px 18px rgba(36, 45, 41, 0.08);
 }
 
-.product-art {
-  width: 76px;
-  height: 86px;
-  border-radius: 8px;
-  align-items: center;
-  justify-content: center;
-}
-
-.product-emoji {
-  color: #fffaf1;
-  font-size: 30px;
-  font-weight: 700;
+.product-image {
+  width: 100%;
+  height: 168px;
+  background-color: #e8dfcf;
 }
 
 .product-info {
-  flex: 1;
-  margin-left: 12px;
-  justify-content: space-between;
+  padding: 13px;
 }
 
-.product-row {
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.product-name {
-  width: 136px;
-  color: #20302d;
-  font-size: 16px;
-  font-weight: 700;
-  flex: 1;
-  lines: 1;
-  text-overflow: ellipsis;
-  }
-
-.product-price {
-  color: #c46141;
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.product-desc {
-  margin-top: 7px;
-  color: #70634e;
-  font-size: 12px;
-  line-height: 18px;
-}
-
-.meta-row {
-  margin-top: 9px;
+.tag-row {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
 
 .tag {
-  padding: 4px 9px;
+  height: 24px;
+  padding-left: 9px;
+  padding-right: 9px;
   border-radius: 8px;
-  color: #20302d;
-  background-color: #ead9bb;
+  color: #192421;
+  background-color: #e7d5ba;
   font-size: 11px;
   font-weight: 700;
+  line-height: 24px;
 }
 
 .sold {
-  color: #9b8a6f;
+  color: #9b8f7c;
   font-size: 11px;
+}
+
+.product-name {
+  margin-top: 10px;
+  color: #192421;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 700;
+  lines: 1;
+  text-overflow: ellipsis;
+}
+
+.product-desc {
+  margin-top: 5px;
+  color: #71695e;
+  font-size: 13px;
+  line-height: 19px;
+}
+
+.price-row {
+  margin-top: 11px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.product-price {
+  color: #ba5336;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.original-price {
+  margin-left: 8px;
+  color: #aaa092;
+  font-size: 12px;
 }
 </style>

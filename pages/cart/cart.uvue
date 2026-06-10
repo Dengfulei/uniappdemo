@@ -1,0 +1,391 @@
+<template>
+  <scroll-view class="page-scroll" :scroll-y="true">
+    <view class="page-content">
+      <view class="topbar">
+        <view>
+          <text class="eyebrow">BASKET</text>
+          <text class="title">购物车</text>
+        </view>
+        <text class="count-pill">{{ totalQuantity }} 件</text>
+      </view>
+
+      <view class="empty-state" v-if="cartItems.length == 0">
+        <text class="empty-icon">袋</text>
+        <text class="empty-title">购物车还是空的</text>
+        <text class="empty-desc">去首页挑几件喜欢的商品，加入后会显示在这里。</text>
+        <button class="empty-button" @click="goHome">
+          <text class="empty-button-text">去逛逛</text>
+        </button>
+      </view>
+
+      <view v-if="cartItems.length > 0">
+        <view class="cart-list">
+          <view class="cart-card" v-for="item in cartItems" :key="item.id">
+            <image class="cart-image" :src="item.image" mode="aspectFill"></image>
+            <view class="cart-info">
+              <text class="cart-name">{{ item.name }}</text>
+              <text class="cart-desc">{{ item.tag }} · {{ item.desc }}</text>
+              <view class="cart-bottom">
+                <text class="cart-price">¥{{ item.price }}</text>
+                <view class="stepper">
+                  <text class="step-button" @click="decrease(item)">-</text>
+                  <text class="step-count">{{ item.quantity }}</text>
+                  <text class="step-button" @click="increase(item)">+</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <view class="summary-panel">
+          <view class="summary-row">
+            <text class="summary-label">商品数量</text>
+            <text class="summary-value">{{ totalQuantity }} 件</text>
+          </view>
+          <view class="summary-row">
+            <text class="summary-label">商品合计</text>
+            <text class="summary-total">¥{{ totalPrice }}</text>
+          </view>
+          <button class="checkout-button" @click="checkout">
+            <text class="checkout-button-text">结算</text>
+          </button>
+          <button class="clear-button" @click="clearCart">
+            <text class="clear-button-text">清空购物车</text>
+          </button>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</template>
+
+<script>
+const CART_KEY = 'SHOPPING_CART_ITEMS'
+
+type CartItem = {
+  id: number
+  name: string
+  price: string
+  originalPrice: string
+  desc: string
+  tag: string
+  sold: number
+  image: string
+  images: string[]
+  summary: string
+  specs: string[]
+  quantity: number
+}
+
+export default {
+  data() {
+    return {
+      cartItems: [] as CartItem[],
+      totalQuantity: 0,
+      totalPrice: '0.00'
+    }
+  },
+  onShow() {
+    this.loadCart()
+  },
+  methods: {
+    loadCart() {
+      const raw = uni.getStorageSync(CART_KEY) as string
+      if (raw == '') {
+        this.cartItems = [] as CartItem[]
+      } else {
+        this.cartItems = JSON.parse(raw) as CartItem[]
+      }
+      this.recalculate()
+    },
+    saveCart() {
+      uni.setStorageSync(CART_KEY, JSON.stringify(this.cartItems))
+      this.recalculate()
+    },
+    recalculate() {
+      let quantity = 0
+      let price = 0
+
+      this.cartItems.forEach((item) => {
+        quantity = quantity + item.quantity
+        price = price + parseFloat(item.price) * item.quantity
+      })
+
+      this.totalQuantity = quantity
+      this.totalPrice = price.toFixed(2)
+    },
+    increase(item: CartItem) {
+      item.quantity = item.quantity + 1
+      this.saveCart()
+    },
+    decrease(item: CartItem) {
+      if (item.quantity > 1) {
+        item.quantity = item.quantity - 1
+        this.saveCart()
+        return
+      }
+
+      this.cartItems = this.cartItems.filter((cartItem) => cartItem.id != item.id) as CartItem[]
+      this.saveCart()
+    },
+    clearCart() {
+      this.cartItems = [] as CartItem[]
+      uni.removeStorageSync(CART_KEY)
+      this.recalculate()
+    },
+    checkout() {
+      uni.showToast({
+        title: '结算功能演示',
+        icon: 'none'
+      })
+    },
+    goHome() {
+      uni.switchTab({
+        url: '/pages/index/index'
+      })
+    }
+  }
+}
+</script>
+
+<style>
+.page-scroll {
+  flex: 1;
+  height: 100%;
+  background-color: #f7f3ea;
+}
+
+.page-content {
+  padding: 22px 16px 32px;
+}
+
+.topbar {
+  margin-bottom: 18px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.eyebrow {
+  color: #8b8172;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.title {
+  margin-top: 4px;
+  color: #192421;
+  font-size: 32px;
+  line-height: 38px;
+  font-weight: 700;
+}
+
+.count-pill {
+  height: 34px;
+  padding-left: 14px;
+  padding-right: 14px;
+  border-radius: 8px;
+  color: #fffaf1;
+  background-color: #192421;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 34px;
+}
+
+.empty-state {
+  min-height: 420px;
+  padding: 30px 22px;
+  border-radius: 8px;
+  background-color: #fffaf1;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-icon {
+  width: 78px;
+  height: 78px;
+  border-radius: 8px;
+  background-color: #e7d5ba;
+  color: #192421;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 78px;
+  text-align: center;
+}
+
+.empty-title {
+  margin-top: 18px;
+  color: #192421;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.empty-desc {
+  margin-top: 8px;
+  color: #71695e;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+}
+
+.empty-button {
+  width: 132px;
+  height: 42px;
+  padding: 0;
+  margin-top: 22px;
+  border-radius: 8px;
+  background-color: #ba5336;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-button-text {
+  width: 100%;
+  height: 42px;
+  color: #fffaf1;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 42px;
+  text-align: center;
+}
+
+.cart-card {
+  margin-bottom: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #fffaf1;
+  flex-direction: row;
+  box-shadow: 0 8px 18px rgba(36, 45, 41, 0.07);
+}
+
+.cart-image {
+  width: 92px;
+  height: 104px;
+  border-radius: 8px;
+  background-color: #e8dfcf;
+}
+
+.cart-info {
+  flex: 1;
+  margin-left: 12px;
+  justify-content: space-between;
+}
+
+.cart-name {
+  color: #192421;
+  font-size: 17px;
+  font-weight: 700;
+  lines: 1;
+  text-overflow: ellipsis;
+}
+
+.cart-desc {
+  margin-top: 5px;
+  color: #71695e;
+  font-size: 12px;
+  line-height: 18px;
+  lines: 2;
+  text-overflow: ellipsis;
+}
+
+.cart-bottom {
+  margin-top: 10px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cart-price {
+  color: #ba5336;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.stepper {
+  height: 32px;
+  border-radius: 8px;
+  background-color: #f1e5d1;
+  flex-direction: row;
+  align-items: center;
+}
+
+.step-button {
+  width: 32px;
+  height: 32px;
+  color: #192421;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 32px;
+  text-align: center;
+}
+
+.step-count {
+  min-width: 30px;
+  color: #192421;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.summary-panel {
+  margin-top: 8px;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #192421;
+}
+
+.summary-row {
+  margin-bottom: 12px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.summary-label {
+  color: #c9d4cf;
+  font-size: 14px;
+}
+
+.summary-value {
+  color: #fffaf1;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.summary-total {
+  color: #f6c95f;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.checkout-button,
+.clear-button {
+  height: 44px;
+  padding: 0;
+  margin: 0;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkout-button {
+  margin-top: 6px;
+  background-color: #ba5336;
+}
+
+.clear-button {
+  margin-top: 10px;
+  background-color: #31423e;
+}
+
+.checkout-button-text,
+.clear-button-text {
+  width: 100%;
+  height: 44px;
+  color: #fffaf1;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 44px;
+  text-align: center;
+}
+</style>

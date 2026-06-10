@@ -1,0 +1,296 @@
+<template>
+  <scroll-view class="page-scroll" :scroll-y="true">
+    <view class="page-content">
+      <view class="profile-card">
+        <view class="avatar">
+          <text class="avatar-text">M</text>
+        </view>
+        <view class="profile-copy">
+          <text class="profile-name">Spring 用户</text>
+          <text class="profile-subtitle">个人中心</text>
+        </view>
+        <button class="login-button" @click="goLogin">
+          <text class="login-button-text">登录</text>
+        </button>
+      </view>
+
+      <view class="stats-row">
+        <view class="stat-card">
+          <text class="stat-value">12</text>
+          <text class="stat-label">收藏</text>
+        </view>
+        <view class="stat-card stat-card-middle">
+          <text class="stat-value">3</text>
+          <text class="stat-label">优惠券</text>
+        </view>
+        <view class="stat-card">
+          <text class="stat-value">{{ cartCount }}</text>
+          <text class="stat-label">购物车</text>
+        </view>
+      </view>
+
+      <view class="member-panel">
+        <text class="member-kicker">MEMBER</text>
+        <text class="member-title">生活好物会员</text>
+        <text class="member-desc">查看订单、收货地址和购物车信息，保持简单清楚的个人入口。</text>
+      </view>
+
+      <view class="menu-panel">
+        <view class="menu-item" @click="goCart">
+          <text class="menu-icon">车</text>
+          <text class="menu-title">我的购物车</text>
+          <text class="menu-arrow">></text>
+        </view>
+        <view class="menu-item">
+          <text class="menu-icon">单</text>
+          <text class="menu-title">我的订单</text>
+          <text class="menu-arrow">></text>
+        </view>
+        <view class="menu-item">
+          <text class="menu-icon">址</text>
+          <text class="menu-title">收货地址</text>
+          <text class="menu-arrow">></text>
+        </view>
+        <view class="menu-item menu-item-last">
+          <text class="menu-icon">服</text>
+          <text class="menu-title">联系客服</text>
+          <text class="menu-arrow">></text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</template>
+
+<script>
+const CART_KEY = 'SHOPPING_CART_ITEMS'
+
+type CartItem = {
+  id: number
+  name: string
+  price: string
+  originalPrice: string
+  desc: string
+  tag: string
+  sold: number
+  image: string
+  images: string[]
+  summary: string
+  specs: string[]
+  quantity: number
+}
+
+export default {
+  data() {
+    return {
+      cartCount: 0
+    }
+  },
+  onShow() {
+    this.loadCartCount()
+  },
+  methods: {
+    loadCartCount() {
+      const raw = uni.getStorageSync(CART_KEY) as string
+      if (raw == '') {
+        this.cartCount = 0
+        return
+      }
+
+      const items = JSON.parse(raw) as CartItem[]
+      let count = 0
+      items.forEach((item) => {
+        count = count + item.quantity
+      })
+      this.cartCount = count
+    },
+    goLogin() {
+      uni.navigateTo({
+        url: '/pages/login/login'
+      })
+    },
+    goCart() {
+      uni.switchTab({
+        url: '/pages/cart/cart'
+      })
+    }
+  }
+}
+</script>
+
+<style>
+.page-scroll {
+  flex: 1;
+  height: 100%;
+  background-color: #f7f3ea;
+}
+
+.page-content {
+  padding: 22px 16px 32px;
+}
+
+.profile-card {
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #192421;
+  flex-direction: row;
+  align-items: center;
+  box-shadow: 0 10px 24px rgba(36, 45, 41, 0.12);
+}
+
+.avatar {
+  width: 58px;
+  height: 58px;
+  border-radius: 8px;
+  background-color: #f6c95f;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-text {
+  color: #192421;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.profile-copy {
+  flex: 1;
+  margin-left: 14px;
+}
+
+.profile-name {
+  color: #fffaf1;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.profile-subtitle {
+  margin-top: 5px;
+  color: #c9d4cf;
+  font-size: 13px;
+}
+
+.login-button {
+  width: 70px;
+  height: 36px;
+  padding: 0;
+  margin: 0;
+  border-radius: 8px;
+  background-color: #ba5336;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-button-text {
+  width: 100%;
+  height: 36px;
+  color: #fffaf1;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 36px;
+  text-align: center;
+}
+
+.stats-row {
+  margin-top: 12px;
+  flex-direction: row;
+}
+
+.stat-card {
+  flex: 1;
+  padding: 14px 0;
+  border-radius: 8px;
+  background-color: #fffaf1;
+  align-items: center;
+  box-shadow: 0 8px 18px rgba(36, 45, 41, 0.07);
+}
+
+.stat-card-middle {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.stat-value {
+  color: #ba5336;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.stat-label {
+  margin-top: 5px;
+  color: #71695e;
+  font-size: 12px;
+}
+
+.member-panel {
+  margin-top: 12px;
+  padding: 18px;
+  border-radius: 8px;
+  background-color: #e7d5ba;
+}
+
+.member-kicker {
+  color: #ba5336;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.member-title {
+  margin-top: 8px;
+  color: #192421;
+  font-size: 23px;
+  font-weight: 700;
+}
+
+.member-desc {
+  margin-top: 8px;
+  color: #625d55;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.menu-panel {
+  margin-top: 12px;
+  padding-left: 14px;
+  padding-right: 14px;
+  border-radius: 8px;
+  background-color: #fffaf1;
+}
+
+.menu-item {
+  height: 58px;
+  border-bottom-width: 1px;
+  border-bottom-color: #eee2cf;
+  flex-direction: row;
+  align-items: center;
+}
+
+.menu-item-last {
+  border-bottom-width: 0;
+}
+
+.menu-icon {
+  width: 32px;
+  height: 32px;
+  margin-right: 12px;
+  border-radius: 8px;
+  background-color: #f1e5d1;
+  color: #192421;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 32px;
+  text-align: center;
+}
+
+.menu-title {
+  flex: 1;
+  color: #192421;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.menu-arrow {
+  color: #a69a8a;
+  font-size: 18px;
+}
+</style>
