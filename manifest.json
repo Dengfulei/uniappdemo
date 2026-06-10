@@ -23,14 +23,23 @@
 			}
 		}
 	},
-		"app-ios": {
-			"distribute": {
-				"modules": {},
-				"icons": {},
-				"privacyDescription": {
-					"NSPhotoLibraryUsageDescription": "需要访问相册，用于演示 iOS 原生 UTS 插件打开系统相册。"
-				},
-				"splashScreens": {}
+	"app-ios": {
+		"distribute": {
+			"modules": {},
+			"icons": {
+				"appstore": "/Users/dengfulei/Desktop/codex-ai/uniappdemo/static/1024.png"
+			},
+			"privacyDescription": {
+				"NSPhotoLibraryUsageDescription": "需要访问相册，用于演示 iOS 原生 UTS 插件打开系统相册。"
+			},
+			"splashScreens": {
+				"storyboard": "/Users/dengfulei/Desktop/codex-ai/uniappdemo/static/CustomStoryboard.zip"
 			}
 		}
+	},
+	"web": {
+		"router": {
+			"mode": ""
+		}
+	}
 }

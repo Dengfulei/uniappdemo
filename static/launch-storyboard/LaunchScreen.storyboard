@@ -17,19 +17,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dc_launchscreen_pad_background" translatesAutoresizingMaskIntoConstraints="NO" id="Oly-Jg-H5o">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dc_launchscreen_pad_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="Oly-Jg-H5o">
                                 <rect key="frame" x="0.0" y="0.0" width="1032" height="1376"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dc_launchscreen_landscape_background" translatesAutoresizingMaskIntoConstraints="NO" id="jN2-Td-r8h">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dc_launchscreen_landscape_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="jN2-Td-r8h">
                                 <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dc_launchscreen_portrait_background" translatesAutoresizingMaskIntoConstraints="NO" id="Tt8-jS-2H5">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dc_launchscreen_portrait_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="Tt8-jS-2H5">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dc_launchscreen_icon" translatesAutoresizingMaskIntoConstraints="NO" id="vp6-uo-KS2">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dc_launchscreen_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="vp6-uo-KS2">
                                 <rect key="frame" x="150.66666666666666" y="391.66666666666669" width="112.66666666666666" height="112.66666666666669"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
@@ -94,10 +94,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="dc_launchscreen_icon" width="112.66666412353516" height="112.66666412353516"/>
-        <image name="dc_launchscreen_landscape_background" width="812" height="375"/>
-        <image name="dc_launchscreen_pad_background" width="768" height="1024"/>
-        <image name="dc_launchscreen_portrait_background" width="375" height="812"/>
+        <image name="dc_launchscreen_icon.png" width="112.66666412353516" height="112.66666412353516"/>
+        <image name="dc_launchscreen_landscape_background.png" width="812" height="375"/>
+        <image name="dc_launchscreen_pad_background.png" width="768" height="1024"/>
+        <image name="dc_launchscreen_portrait_background.png" width="375" height="812"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
